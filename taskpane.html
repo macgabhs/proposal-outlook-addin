@@ -6,11 +6,7 @@
 <title>AWN Proposal Builder | Trinity Consultants</title>
 <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --ultramarine:#0032A0;--azure:#0072CE;--sapphire:#009CBD;--seafoam:#2D9B8E;
-    --ink:#1a1a18;--grey:#555;--line:#e6e6e6;--steel:#ccc;--panel:#f4f7ff;--panel-border:#dde6f5;
-    --radius:12px;--shadow:0 2px 10px rgba(0,0,0,0.13);
-  }
+  :root{--ultramarine:#0032A0;--azure:#0072CE;--sapphire:#009CBD;--seafoam:#2D9B8E;--ink:#1a1a18;--grey:#555;--line:#e6e6e6;--steel:#ccc;--panel:#f4f7ff;--panel-border:#dde6f5;--radius:12px;--shadow:0 2px 10px rgba(0,0,0,0.13);}
   *{box-sizing:border-box;margin:0;padding:0;}
   body{font-family:'Fira Sans',system-ui,sans-serif;color:var(--ink);background:#fff;line-height:1.5;min-height:100vh;}
   header{padding:28px 40px 20px;max-width:1180px;margin:0 auto;}
@@ -36,9 +32,7 @@
   select:disabled{background:#f2f2f2;color:#aaa;cursor:not-allowed;}
   textarea{resize:vertical;min-height:70px;}
   input:focus,select:focus,textarea:focus{outline:none;border-color:var(--azure);box-shadow:0 0 0 3px rgba(0,114,206,.1);}
-  .fee-wrap{position:relative;}
-  .fee-wrap .cursym{position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--grey);}
-  .fee-wrap input{padding-left:26px;}
+  .fee-wrap{position:relative;}.fee-wrap .cursym{position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--grey);}.fee-wrap input{padding-left:26px;}
   .pct-wrap{position:relative;}.pct-wrap span{position:absolute;right:12px;top:50%;transform:translateY(-50%);color:var(--grey);}.pct-wrap input{padding-right:28px;}
   .teams{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
   @media(max-width:760px){.teams{grid-template-columns:1fr 1fr;}}
@@ -109,7 +103,6 @@
 <div class="wrap">
   <div class="intro">Complete the details and choose a template, then select <b>Create Outlook email</b>. A new message to <b>project@awnconsulting.com</b> opens directly in Outlook, pre-filled and ready to send.</div>
   <form id="proposalForm" novalidate>
-
     <section class="card">
       <h2><span class="num">1</span>Which team is preparing this fee?</h2>
       <p class="hint">Your selection sets the Primary Project Type and template choices below.</p>
@@ -128,7 +121,6 @@
           <strong>Multi-Discipline</strong><small>Combined services across teams</small></label>
       </div>
     </section>
-
     <section class="card">
       <h2><span class="num">2</span>Project details</h2>
       <p class="hint">Core information required to open the proposal in Vantagepoint.</p>
@@ -172,22 +164,17 @@
           <textarea id="notes" placeholder="Submission deadline, scope highlights, bid type, hard-copy requirements, add services fee, etc."></textarea></div>
       </div>
     </section>
-
     <section class="card">
       <h2><span class="num">3</span>Choose your proposal template</h2>
       <p class="hint">Pick one project type. Only one template can be chosen per project.</p>
       <div id="templateArea"><div class="tpl-placeholder">Select a team above to see the available templates.</div></div>
     </section>
-
     <div class="actions">
       <button type="submit" class="btn" id="submitBtn" disabled>Create Outlook email</button>
-      
       <span class="status" id="statusMsg">Complete all required fields and choose one template.</span>
     </div>
   </form>
-
   <div class="summary" id="summaryBox"><h3>Proposal request prepared</h3><dl id="summaryList"></dl></div>
-
   <footer class="page-foot"><div class="bar"></div>
     AWN Consulting Ltd, The Tecpro Building, IDA Business &amp; Technology Park, Clonshaugh, Dublin 17, D17 XD90 &nbsp;|&nbsp; A Trinity Consultants company
   </footer>
@@ -203,8 +190,8 @@
   const RECIPIENT = 'project@awnconsulting.com';
 
   const INBOX_USERS = [
-    { name:'Karine Alves',     root:'C:\\Users\\Karine.Alves\\Box' },
-    { name:'Sinead McDermott', root:'C:\\Users\\Sinead.McDermott\\Box' }
+    { name:'Karine Alves',     root:'C:\\Users\\KarineAlves\\Box' },
+    { name:'Sinead McDermott', root:'C:\\Users\\SineadMcDermott\\Box' }
   ];
   const PROPOSAL_REL = 'AWN\\Company\\D\\Document Templates\\Rebranded Templates 2025\\Proposal';
   const TEMPLATES_REL = PROPOSAL_REL + '\\Proposal Templates';
@@ -216,7 +203,6 @@
     Water: ['Other Regulatory and Technical Services - Environmental Programs Development and Support','Waste Services - Waste Management Services \u2013 Other','Other Regulatory and Technical Services - Land Use Planning and Permitting','Water Services - Groundwater and Surface Water Sampling','Property Assessment, Investigation and Remediation - Site Assessments','Risk&Process Safety Services \u2013 Process Hazard Analysis (PHA)','Risk&Process Safety Services \u2013 Process Safety Management','Risk&Process Safety Services \u2013 PSM General Services','Risk&Process Safety Services \u2013 Risk Assessments'],
     'Multi-Discipline': ['Other Regulatory and Technical Services - Environmental Programs Development and Support']
   };
-
   const FOLDERS = {
     'Air & Climate': [
       { type:'Wind Farm Air & Climate', file:'R267501.xxxx (Wind Farm Air & Climate).dotx' },
@@ -267,7 +253,6 @@
     { folder:'Water', type:'EIAR ACNSWW', file:'R267501.xxxx (EIAR ACNSWW Proposal).dotx' }
   ];
   const FOLDER_CLASS = {'Air & Climate':'fh-air','Noise':'fh-noise','Water':'fh-water','Waste':'fh-waste','Risk':'fh-risk'};
-
   const S = 'width="40" height="40" viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"';
   const ICONS = {
     wind:'<svg '+S+' stroke="#0072CE"><path d="M12 12V3"/><path d="M12 12l7 4"/><path d="M12 12l-7 4"/><circle cx="12" cy="12" r="1.6" fill="#0072CE"/><path d="M8 21h8"/></svg>',
@@ -325,12 +310,10 @@
     if(t.includes('air')||t.includes('climate'))return ICONS.air;
     return ICONS.doc;
   }
-
   let selectedTemplates = [];
   function escapeHtml(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
   function toFileUri(w){return 'file:///'+w.replace(/\\/g,'/').replace(/ /g,'%20');}
   function fullPathFor(root,rel){return root+'\\'+rel;}
-
   function makeThumb(typeLabel, fileName, relPath){
     const label=document.createElement('label'); label.className='thumb';
     const rb=document.createElement('input'); rb.type='radio'; rb.name='template';
@@ -378,7 +361,6 @@
     sfGrid.appendChild(makeThumb(SHORT_FORM.type,SHORT_FORM.file,PROPOSAL_REL+'\\'+SHORT_FORM.file));
     sfGroup.appendChild(sfGrid); templateArea.appendChild(sfGroup);
   }
-
   function populateProjectTypes(team){
     projectType.innerHTML='';
     const ph=document.createElement('option'); ph.value=''; ph.disabled=true; ph.selected=true; ph.textContent='Select a service type';
@@ -388,27 +370,21 @@
     projectType.disabled=false;
     if(list.length===1){projectType.value=list[0];}
   }
-
   document.getElementById('teamGroup').addEventListener('change',e=>{
     document.querySelectorAll('#teamGroup .team').forEach(c=>c.classList.remove('checked'));
     const card=e.target.closest('.team'); if(card)card.classList.add('checked');
     populateProjectTypes(e.target.value); renderTemplates(e.target.value); checkComplete();
   });
-
-  // currency toggle updates fee symbol
   const feeSym=document.getElementById('feeSym');
   document.getElementById('currencyToggle').addEventListener('change',()=>{
-    feeSym.innerHTML = currencyValue()==='GBP' ? '&pound;' : '&euro;';
-    checkComplete();
+    feeSym.innerHTML = currencyValue()==='GBP' ? '&pound;' : '&euro;'; checkComplete();
   });
-
   const required=['projectName','client','naics','projectType','consultants','fee','pWin'];
   function teamValue(){const el=document.querySelector('input[name="team"]:checked'); return el?el.value:'';}
   function climateValue(){const el=document.querySelector('input[name="climate"]:checked'); return el?el.value:'';}
   function currencyValue(){const el=document.querySelector('input[name="currency"]:checked'); return el?el.value:'';}
   function currencySymbol(){return currencyValue()==='GBP'?'\u00A3':'\u20AC';}
   function currencyLocale(){return currencyValue()==='GBP'?'en-GB':'en-IE';}
-
   function checkComplete(){
     let ok=true;
     if(!teamValue())ok=false;
@@ -417,13 +393,11 @@
     if(!currencyValue())ok=false;
     if(selectedTemplates.length===0)ok=false;
     submitBtn.disabled=!ok;
-    if(typeof onCompleteState==='function') onCompleteState(ok);
     statusMsg.textContent= ok?'Ready to send.':'Complete all required fields and choose one template.';
     statusMsg.classList.toggle('ok',ok);
   }
   form.addEventListener('input',checkComplete);
   form.addEventListener('change',checkComplete);
-
   function gatherData(){
     return {
       'Team':teamValue(),
@@ -440,7 +414,6 @@
     };
   }
   function subjectLine(d){return 'Proposal request ('+d['Team']+'): '+d['Project name']+' - '+d['Client / organisation'];}
-
   function buildPlainBody(d){
     let b='New proposal request\r\n====================================\r\n\r\n';
     for(const[k,v] of Object.entries(d)){b+=k+':\r\n'+v+'\r\n\r\n';}
@@ -491,23 +464,14 @@
     box.scrollIntoView({behavior:'smooth',block:'start'});
   }
 
-  // Enable the button state hook is handled by checkComplete via onCompleteState.
-  function onCompleteState(ok){ /* reserved for future add-in UI state */ }
-
   form.addEventListener('submit',e=>{
     e.preventDefault();
     const d=gatherData();
     if(typeof Office!=='undefined' && Office.context && Office.context.mailbox){
-      // Native Outlook compose via Office.js
-      Office.context.mailbox.displayNewMessageForm({
-        toRecipients:[RECIPIENT],
-        subject:subjectLine(d),
-        htmlBody:buildHtmlBody(d)
-      });
+      Office.context.mailbox.displayNewMessageForm({toRecipients:[RECIPIENT],subject:subjectLine(d),htmlBody:buildHtmlBody(d)});
       statusMsg.textContent='A new Outlook email has been opened. Review and send.';
       statusMsg.classList.add('ok');
     } else {
-      // Fallback to mailto if Office.js is unavailable (e.g. opened in a browser)
       const mailto='mailto:'+RECIPIENT+'?subject='+encodeURIComponent(subjectLine(d))+'&body='+encodeURIComponent(buildPlainBody(d));
       window.location.href=mailto;
       statusMsg.textContent='Office.js unavailable; opened your default mail client instead.';
@@ -515,9 +479,7 @@
     }
     showSummary(d);
   });
-
-  if(typeof Office!=='undefined'){ Office.onReady(function(){ checkComplete(); }); }
-  else { checkComplete(); }
+  if(typeof Office!=='undefined'){ Office.onReady(function(){ checkComplete(); }); } else { checkComplete(); }
 
 </script>
 </body>
