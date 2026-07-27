@@ -109,13 +109,13 @@
       <div class="teams" id="teamGroup">
         <label class="team team-air"><input type="radio" name="team" value="Air" required><span class="tick">&#10003;</span>
           <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round"><path d="M3 8h11a2.5 2.5 0 1 0-2.5-2.5"/><path d="M3 12h15a2.5 2.5 0 1 1-2.5 2.5"/><path d="M3 16h8a2 2 0 1 1-2 2"/></svg>
-          <strong>Air</strong><small>Air quality, compliance &amp; modelling</small></label>
+          <strong>Air &amp; Climate</strong><small>Air quality, compliance &amp; modelling</small></label>
         <label class="team team-noise"><input type="radio" name="team" value="Noise"><span class="tick">&#10003;</span>
           <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16 8a4 4 0 0 1 0 8"/><path d="M18.5 5.5a7.5 7.5 0 0 1 0 13"/></svg>
           <strong>Noise</strong><small>Acoustics, vibration &amp; monitoring</small></label>
         <label class="team team-water"><input type="radio" name="team" value="Water"><span class="tick">&#10003;</span>
           <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11z"/></svg>
-          <strong>Water</strong><small>Water, waste, land &amp; risk</small></label>
+          <strong>Water</strong><small>Water, waste, ecology &amp; risk</small></label>
         <label class="team team-multi"><input type="radio" name="team" value="Multi-Discipline"><span class="tick">&#10003;</span>
           <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="8" r="3.2"/><circle cx="16" cy="8" r="3.2"/><circle cx="12" cy="15.5" r="3.2"/></svg>
           <strong>Multi-Discipline</strong><small>Combined services across teams</small></label>
@@ -188,7 +188,6 @@
   const projectType = document.getElementById('projectType');
   const templateArea = document.getElementById('templateArea');
   const RECIPIENT = 'project@awnconsulting.com';
-
   const INBOX_USERS = [
     { name:'Karine Alves',     root:'C:\\Users\\KarineAlves\\Box' },
     { name:'Sinead McDermott', root:'C:\\Users\\SineadMcDermott\\Box' }
@@ -196,7 +195,6 @@
   const PROPOSAL_REL = 'AWN\\Company\\D\\Document Templates\\Rebranded Templates 2025\\Proposal';
   const TEMPLATES_REL = PROPOSAL_REL + '\\Proposal Templates';
   const SHORT_FORM = { type:'Short Form Proposal', file:'Trinity-AWN Short Form Proposal Rev1.dotx' };
-
   const PROJECT_TYPES = {
     Air: ['Air Compliance and Regulatory Services - Comprehensive Air Compliance Support Services','Air Quality/Transportation Planning Support - Air Quality Planning Support','Air Quality/Transportation Planning Support - Transportation Planning Support','Ambient Monitoring and Meteorological Services - Ambient Monitoring Support','IH Services - Exposure Assessments and Monitoring','Modelling - General Dispersion Modelling','Other Regulatory and Technical Services - Indoor Air Quality Studies'],
     Noise: ['Noise Services - Building Acoustics','Noise Services - Development Application','Noise Services \u2013 Environment','Noise Services - Industrial Hygiene','Noise Services \u2013 Monitoring','Noise Services \u2013 Transport'],
