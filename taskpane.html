@@ -170,7 +170,7 @@
       <div id="templateArea"><div class="tpl-placeholder">Select a team above to see the available templates.</div></div>
     </section>
     <div class="actions">
-      <button type="submit" class="btn" id="submitBtn" disabled>Create Outlook email</button>
+      <button type="submit" class="btn" id="submitBtn" disabled>Create / Update Email Draft</button>
       <span class="status" id="statusMsg">Complete all required fields and choose one template.</span>
     </div>
   </form>
@@ -462,6 +462,56 @@
     box.scrollIntoView({behavior:'smooth',block:'start'});
   }
 
+// Helper: report success/failure of an async Office.js call to the status line
+function reportResult(result, okText){
+    if(result && result.status === Office.AsyncResultStatus.Succeeded){
+        statusMsg.textContent = okText;
+        statusMsg.classList.add("ok");
+    } else {
+        if(result && result.error){ console.error(result.error); }
+        statusMsg.textContent = "Something went wrong updating the draft. Please try again.";
+        statusMsg.classList.remove("ok");
+    }
+}
+
+// Insert the proposal content at the very TOP of the current draft without
+// removing anything that is already there (existing text, forwarded trail, etc.).
+// Reads the current HTML body, prepends the proposal content, then writes it back.
+// Uses getAsync + setAsync so it works on older Mailbox requirement sets too.
+function prependToBody(item, d, kind){
+    item.body.getAsync(
+        Office.CoercionType.Html,
+        function(getResult){
+            var existing = "";
+            if(getResult.status === Office.AsyncResultStatus.Succeeded && getResult.value){
+                existing = getResult.value;
+            } else if(getResult.error){
+                console.error(getResult.error);
+            }
+            var combined = buildHtmlBody(d) + "<br><br>" + existing;
+            item.body.setAsync(
+                combined,
+                { coercionType: Office.CoercionType.Html },
+                function(setResult){
+                    reportResult(setResult, "Proposal details added to the top of your " + kind + ". Review and send.");
+                }
+            );
+        }
+    );
+}
+
+// Set the recipient and subject on a brand new draft, then prepend the proposal
+// content to the top of the (usually empty) body.
+function populateNewDraft(item, d){
+    if(item.to && item.to.setAsync){
+        item.to.setAsync([RECIPIENT], function(r){ if(r.status !== Office.AsyncResultStatus.Succeeded){ console.error(r.error); } });
+    }
+    if(item.subject && item.subject.setAsync){
+        item.subject.setAsync(subjectLine(d), function(r){ if(r.status !== Office.AsyncResultStatus.Succeeded){ console.error(r.error); } });
+    }
+    prependToBody(item, d, "draft");
+}
+
 form.addEventListener('submit', async (e) => {
 
     e.preventDefault();
@@ -478,46 +528,56 @@ form.addEventListener('submit', async (e) => {
 
             const item = Office.context.mailbox.item;
 
-            // Running inside a compose window
+            // Running inside a compose window (New Email, Reply or Forward)
             if (
                 item &&
                 item.itemType === Office.MailboxEnums.ItemType.Message &&
-                item.subject &&
                 item.body
             ) {
 
-                item.subject.setAsync(subjectLine(d));
+                // Determine whether this is a new mail, a reply or a forward.
+                // getComposeTypeAsync is available in Mailbox requirement set 1.8+.
+                if (item.getComposeTypeAsync) {
 
-                item.body.setAsync(
-                    buildHtmlBody(d),
-                    {
-                        coercionType: Office.CoercionType.Html
-                    }
-                );
+                    item.getComposeTypeAsync(function (typeResult) {
 
-                if (item.to && item.to.setAsync) {
+                        if (typeResult.status === Office.AsyncResultStatus.Succeeded &&
+                            typeResult.value && typeResult.value.composeType) {
 
-                    item.to.setAsync(
-                        [RECIPIENT],
-                        function (result) {
+                            const composeType = typeResult.value.composeType;
 
-                            if (result.status !== Office.AsyncResultStatus.Succeeded) {
-                                console.error(result.error);
+                            if (composeType === "reply") {
+                                // Reply: add proposal content above the existing reply trail
+                                prependToBody(item, d, "reply");
+                            }
+                            else if (composeType === "forward") {
+                                // Forward: add proposal content above the forwarded message
+                                prependToBody(item, d, "forward");
+                            }
+                            else {
+                                // newMail: set recipient/subject and add content to the top
+                                populateNewDraft(item, d);
                             }
 
                         }
-                    );
+                        else {
+                            // Could not determine compose type; safest is to prepend to the body
+                            prependToBody(item, d, "draft");
+                        }
+
+                    });
 
                 }
-
-                statusMsg.textContent =
-                    "Current draft populated successfully. Review and send.";
-
-                statusMsg.classList.add("ok");
+                else {
+                    // Older Outlook that does not support getComposeTypeAsync:
+                    // fall back to populating the current draft.
+                    populateNewDraft(item, d);
+                }
 
             }
             else {
 
+                // Outlook Home / Reading Pane: open a brand new pre-populated draft
                 Office.context.mailbox.displayNewMessageForm({
                     toRecipients: [RECIPIENT],
                     subject: subjectLine(d),
@@ -525,7 +585,7 @@ form.addEventListener('submit', async (e) => {
                 });
 
                 statusMsg.textContent =
-                    "A new Outlook email has been opened. Review and send.";
+                    "A new Outlook draft has been created. Review and send.";
 
                 statusMsg.classList.add("ok");
 
@@ -534,6 +594,7 @@ form.addEventListener('submit', async (e) => {
         }
         else {
 
+            // Office.js unavailable (e.g. opened as a standalone web page): use mailto fallback
             const mailto =
                 "mailto:" +
                 RECIPIENT +
@@ -557,7 +618,7 @@ form.addEventListener('submit', async (e) => {
         console.error(err);
 
         statusMsg.textContent =
-            "Unable to generate email. Please try again.";
+            "Unable to create draft. Please try again.";
 
     }
 
