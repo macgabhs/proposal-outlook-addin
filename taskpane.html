@@ -462,21 +462,108 @@
     box.scrollIntoView({behavior:'smooth',block:'start'});
   }
 
-  form.addEventListener('submit',e=>{
+form.addEventListener('submit', async (e) => {
+
     e.preventDefault();
-    const d=gatherData();
-    if(typeof Office!=='undefined' && Office.context && Office.context.mailbox){
-      Office.context.mailbox.displayNewMessageForm({toRecipients:[RECIPIENT],subject:subjectLine(d),htmlBody:buildHtmlBody(d)});
-      statusMsg.textContent='A new Outlook email has been opened. Review and send.';
-      statusMsg.classList.add('ok');
-    } else {
-      const mailto='mailto:'+RECIPIENT+'?subject='+encodeURIComponent(subjectLine(d))+'&body='+encodeURIComponent(buildPlainBody(d));
-      window.location.href=mailto;
-      statusMsg.textContent='Office.js unavailable; opened your default mail client instead.';
-      statusMsg.classList.add('ok');
+
+    const d = gatherData();
+
+    try {
+
+        if (
+            typeof Office !== "undefined" &&
+            Office.context &&
+            Office.context.mailbox
+        ) {
+
+            const item = Office.context.mailbox.item;
+
+            // Running inside a compose window
+            if (
+                item &&
+                item.itemType === Office.MailboxEnums.ItemType.Message &&
+                item.subject &&
+                item.body
+            ) {
+
+                item.subject.setAsync(subjectLine(d));
+
+                item.body.setAsync(
+                    buildHtmlBody(d),
+                    {
+                        coercionType: Office.CoercionType.Html
+                    }
+                );
+
+                if (item.to && item.to.setAsync) {
+
+                    item.to.setAsync(
+                        [RECIPIENT],
+                        function (result) {
+
+                            if (result.status !== Office.AsyncResultStatus.Succeeded) {
+                                console.error(result.error);
+                            }
+
+                        }
+                    );
+
+                }
+
+                statusMsg.textContent =
+                    "Current draft populated successfully. Review and send.";
+
+                statusMsg.classList.add("ok");
+
+            }
+            else {
+
+                Office.context.mailbox.displayNewMessageForm({
+                    toRecipients: [RECIPIENT],
+                    subject: subjectLine(d),
+                    htmlBody: buildHtmlBody(d)
+                });
+
+                statusMsg.textContent =
+                    "A new Outlook email has been opened. Review and send.";
+
+                statusMsg.classList.add("ok");
+
+            }
+
+        }
+        else {
+
+            const mailto =
+                "mailto:" +
+                RECIPIENT +
+                "?subject=" +
+                encodeURIComponent(subjectLine(d)) +
+                "&body=" +
+                encodeURIComponent(buildPlainBody(d));
+
+            window.location.href = mailto;
+
+            statusMsg.textContent =
+                "Office.js unavailable; opened your default mail client instead.";
+
+            statusMsg.classList.add("ok");
+
+        }
+
     }
+    catch (err) {
+
+        console.error(err);
+
+        statusMsg.textContent =
+            "Unable to generate email. Please try again.";
+
+    }
+
     showSummary(d);
-  });
+
+});
   if(typeof Office!=='undefined'){ Office.onReady(function(){ checkComplete(); }); } else { checkComplete(); }
 
 </script>
