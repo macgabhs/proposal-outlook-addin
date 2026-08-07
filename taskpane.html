@@ -177,6 +177,7 @@
   <div class="summary" id="summaryBox"><h3>Proposal request prepared</h3><dl id="summaryList"></dl></div>
   <footer class="page-foot"><div class="bar"></div>
     AWN Consulting Ltd, The Tecpro Building, IDA Business &amp; Technology Park, Clonshaugh, Dublin 17, D17 XD90 &nbsp;|&nbsp; A Trinity Consultants company
+    <div class="version" style="margin-top:6px;color:var(--grey);font-size:.72rem;">Version 1.4</div>
   </footer>
 </div>
 <script src="https://appsforoffice.microsoft.com/lib/1.1/hosted/office.js"></script>
@@ -528,12 +529,19 @@ form.addEventListener('submit', async (e) => {
 
             const item = Office.context.mailbox.item;
 
-            // Running inside a compose window (New Email, Reply or Forward)
-            if (
+            // Detect compose mode by testing for a compose-only API (body.setAsync).
+            // A message selected in the inbox / reading pane is ALSO a Message item
+            // with a body, so checking itemType alone wrongly treats it as compose.
+            // Only compose mode exposes body.setAsync, so this reliably tells the
+            // two apart and lets the button open a new email from the inbox.
+            const inCompose = !!(
                 item &&
-                item.itemType === Office.MailboxEnums.ItemType.Message &&
-                item.body
-            ) {
+                item.body &&
+                typeof item.body.setAsync === "function"
+            );
+
+            // Running inside a compose window (New Email, Reply or Forward)
+            if (inCompose) {
 
                 // Determine whether this is a new mail, a reply or a forward.
                 // getComposeTypeAsync is available in Mailbox requirement set 1.8+.
