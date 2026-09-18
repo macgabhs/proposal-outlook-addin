@@ -91,7 +91,8 @@
   .summary a{color:var(--azure);}
   footer.page-foot{text-align:center;font-size:.78rem;color:var(--grey);padding:10px 20px 0;}
   footer.page-foot .bar{height:4px;border-radius:2px;margin-bottom:14px;background:linear-gradient(90deg,var(--ultramarine),var(--azure),var(--sapphire),var(--seafoam));}
-  .mode-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:22px;}
+  .mode-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-bottom:22px;}
+  @media(max-width:980px){.mode-grid{grid-template-columns:1fr 1fr;}}
   @media(max-width:640px){.mode-grid{grid-template-columns:1fr;}}
   .mode-card{text-align:left;border:none;border-radius:16px;padding:26px 24px;cursor:pointer;color:#fff;position:relative;overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,.13);transition:transform .12s,box-shadow .12s;font-family:inherit;width:100%;}
   .mode-card:hover{transform:translateY(-3px);box-shadow:0 10px 26px rgba(0,0,0,.18);}
@@ -111,6 +112,177 @@
   .fee-table tfoot td{font-weight:700;color:var(--ultramarine);border-bottom:none;border-top:2px solid var(--line);font-size:1rem;}
   .fee-table .fee-wrap input{max-width:170px;text-align:right;padding-left:26px;}
   footer.page-foot .version{margin-top:6px;color:var(--grey);font-size:.72rem;}
+  .version-link{background:none;border:none;padding:0;margin:0;font-family:inherit;font-size:inherit;color:var(--azure);cursor:pointer;text-decoration:underline;text-underline-offset:2px;}
+  .version-link:hover{color:var(--ultramarine);}
+  .version-link:focus-visible{outline:2px solid var(--azure);outline-offset:2px;border-radius:3px;}
+  /* --- change log --- */
+  .cl-wrap{display:flex;flex-direction:column;gap:14px;}
+  .cl-entry{background:#fff;border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px 22px;}
+  .cl-entry.current{border-color:var(--seafoam);box-shadow:0 0 0 2px rgba(45,155,142,.18);}
+  .cl-head{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:9px;}
+  .cl-ver{display:inline-flex;align-items:center;justify-content:center;min-width:44px;padding:3px 10px;border-radius:20px;background:var(--ultramarine);color:#fff;font-size:.8rem;font-weight:700;letter-spacing:.02em;flex:0 0 auto;}
+  .cl-entry.current .cl-ver{background:var(--seafoam);}
+  .cl-title{font-size:1rem;font-weight:600;color:var(--ultramarine);}
+  .cl-entry.current .cl-title{color:var(--seafoam);}
+  .cl-now{font-size:.68rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--seafoam);border:1px solid var(--seafoam);border-radius:20px;padding:2px 9px;}
+  .cl-list{margin:0;padding-left:20px;}
+  .cl-list li{margin-bottom:5px;font-size:.87rem;line-height:1.55;color:#333;}
+  .cl-list li::marker{color:var(--sapphire);}
+  .vp-hint{margin-top:7px;font-size:.78rem;line-height:1.5;color:var(--grey);background:var(--panel);border:1px solid var(--panel-border);border-left:3px solid var(--seafoam);border-radius:6px;padding:8px 10px;}
+  .vp-hint b{color:var(--ultramarine);font-weight:600;}
+  .vp-hint .vp-row{display:block;margin-top:2px;}
+  .mode-pseaf{background:linear-gradient(140deg,#0032A0 45%,#009CBD 100%);}
+  .pseaf-band{background:var(--panel);border:1px solid var(--panel-border);border-left:4px solid var(--seafoam);border-radius:var(--radius);padding:14px 18px;margin-bottom:22px;}
+  .pseaf-band strong{display:block;color:var(--ultramarine);font-size:.98rem;font-weight:600;margin-bottom:3px;}
+  .pseaf-band span{display:block;font-size:.82rem;color:var(--grey);}
+  .pseaf-band .pseaf-band-note{margin-top:6px;padding-top:6px;border-top:1px solid var(--panel-border);color:var(--ultramarine);}
+  .pseaf-sub{font-size:.9rem;font-weight:600;color:var(--ultramarine);margin:0 0 10px;}
+  .pseaf-table-wrap{overflow-x:auto;}
+  .pseaf-table{width:100%;border-collapse:collapse;font-size:.85rem;}
+  .pseaf-table th{background:var(--ultramarine);color:#fff;font-weight:600;text-align:left;padding:9px 12px;}
+  .pseaf-table td{border:1px solid var(--line);padding:8px 12px;vertical-align:middle;}
+  .pseaf-table tr:nth-child(even) td{background:#fafbfe;}
+  .pseaf-table input[type=checkbox]{width:17px;height:17px;accent-color:var(--seafoam);margin:0;}
+  .pseaf-chk{display:flex;align-items:flex-start;gap:10px;padding:7px 2px;}
+  .pseaf-chk input{width:17px;height:17px;accent-color:var(--seafoam);margin:2px 0 0;flex:0 0 auto;}
+  .pseaf-chk label{margin:0;font-weight:400;font-size:.88rem;line-height:1.45;cursor:pointer;}
+  .pseaf-sub-item label{padding-left:2px;}
+  .pseaf-chk-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 26px;}
+  @media(max-width:640px){.pseaf-chk-grid{grid-template-columns:1fr;}}
+  .pseaf-note{background:#fff6f0;border:1px solid #f6d3bf;border-left:3px solid #EF6323;border-radius:8px;padding:10px 13px;font-size:.83rem;color:#8a3d16;margin:10px 0 12px;line-height:1.5;}
+  .pseaf-note b{color:#6d2f0f;}
+  .pseaf-yn{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:10px 13px;border:1px solid var(--line);border-radius:8px;background:#fafbfe;margin-bottom:9px;}
+  .pseaf-yn span{flex:1;font-size:.87rem;line-height:1.45;}
+  .pseaf-yn-opts{display:flex;gap:12px;flex:0 0 auto;}
+  .pseaf-yn-opts label{display:flex;align-items:center;gap:5px;margin:0;font-size:.83rem;font-weight:500;cursor:pointer;white-space:nowrap;}
+  .pseaf-yn-opts input{width:15px;height:15px;accent-color:var(--seafoam);margin:0;}
+  @media(max-width:640px){.pseaf-yn{flex-direction:column;align-items:flex-start;}}
+  .pseaf-std{background:var(--panel);border:1px solid var(--panel-border);border-radius:8px;padding:11px 14px;margin-top:14px;font-size:.82rem;color:var(--grey);}
+  .pseaf-std b{display:block;color:var(--ultramarine);margin-bottom:6px;font-size:.84rem;}
+  .pseaf-std-table{width:100%;border-collapse:collapse;}
+  .pseaf-std-table td{padding:2px 14px 2px 0;font-size:.81rem;}
+  .pseaf-std-table td:last-child{color:var(--ink);font-weight:500;}
+  .pseaf-decl{background:#f7f9fc;border:1px solid var(--line);border-radius:8px;padding:13px 16px;font-size:.85rem;color:var(--grey);line-height:1.6;}
+  .pseaf-decl ul{margin:8px 0 0;padding-left:20px;}
+  .pseaf-decl li{margin-bottom:5px;}
+  .pseaf-sig{display:grid;grid-template-columns:1.7fr 1.1fr 1.5fr 34px;gap:10px;margin-bottom:9px;align-items:center;}
+  .pseaf-sig.no-sig{grid-template-columns:2fr 1.3fr 34px;}
+  .pseaf-sigbox{display:flex;align-items:center;gap:8px;min-height:40px;}
+  .pseaf-siglbl{margin:0;cursor:pointer;flex:0 0 auto;}
+  .pseaf-sigfile{position:absolute;opacity:0;width:0;height:0;pointer-events:none;}
+  .pseaf-sigcta{display:inline-block;padding:8px 13px;border:1px dashed var(--steel);border-radius:8px;font-size:.8rem;color:var(--grey);background:#fff;transition:all .15s;white-space:nowrap;}
+  .pseaf-siglbl:hover .pseaf-sigcta{border-color:var(--azure);color:var(--azure);background:var(--panel);}
+  .pseaf-sigimg{display:none;max-height:38px;max-width:150px;border:1px solid var(--line);border-radius:6px;background:#fff;padding:2px;}
+  .pseaf-sig.has-sig .pseaf-sigimg{display:block;}
+  .pseaf-sig.has-sig .pseaf-sigcta{border-style:solid;border-color:var(--seafoam);color:var(--seafoam);}
+  .pseaf-sigclear{display:none;background:none;border:none;color:var(--grey);font-size:17px;line-height:1;cursor:pointer;padding:3px 5px;font-family:inherit;}
+  .pseaf-sig.has-sig .pseaf-sigclear{display:inline-block;}
+  .pseaf-sigclear:hover{color:#c0392b;}
+  .pseaf-sig.needs-sig .pseaf-sigcta{border-color:#EF6323;color:#a04a00;border-style:solid;}
+  .pseaf-req-msg{font-size:.8rem;margin:2px 0 11px;color:var(--grey);}
+  .pseaf-req-msg.ok{color:var(--seafoam);font-weight:500;}
+  .pseaf-gate{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:13px 16px;border:1px solid var(--panel-border);background:var(--panel);border-radius:10px;margin-bottom:4px;transition:border-color .15s,background .15s;}
+  .pseaf-gate.unanswered{border:2px solid #EF6323;border-left:6px solid #EF6323;background:#fff3ec;box-shadow:0 0 0 4px rgba(239,99,35,.14);animation:pseafPulse 1.9s ease-in-out infinite;}
+  .pseaf-gate.unanswered .pseaf-gate-q{color:#8a3d16;font-weight:600;}
+  .pseaf-gate.unanswered .pseaf-gate-q::before{content:'!';display:inline-flex;align-items:center;justify-content:center;width:19px;height:19px;border-radius:50%;background:#EF6323;color:#fff;font-size:12px;font-weight:700;margin-right:9px;vertical-align:-3px;}
+  .pseaf-gate.unanswered .pseaf-yn-opts label{border:1px solid #EF6323;border-radius:6px;padding:5px 11px;background:#fff;}
+  @keyframes pseafPulse{0%,100%{box-shadow:0 0 0 4px rgba(239,99,35,.14);}50%{box-shadow:0 0 0 7px rgba(239,99,35,.05);}}
+  @media(prefers-reduced-motion:reduce){.pseaf-gate.unanswered{animation:none;}}
+  .pseaf-yn.unanswered{border:1.5px solid #EF6323;background:#fff6f0;}
+  /* --- unanswered mandatory field highlighting --- */
+  input.req-missing,select.req-missing,textarea.req-missing{border:1.5px solid #EF6323;background:#fff8f4;}
+  input.req-missing:focus,select.req-missing:focus,textarea.req-missing:focus{border-color:#EF6323;box-shadow:0 0 0 3px rgba(239,99,35,.16);}
+  .field.req-missing-field > label{color:#8a3d16;font-weight:600;}
+  .req-missing-group{border:1.5px solid #EF6323;border-radius:9px;padding:7px;background:#fff8f4;}
+  /* --- outstanding items panel --- */
+  .req-panel{display:none;margin:0 0 18px;border-radius:10px;font-size:.88rem;}
+  .req-panel.show{display:block;border:2px solid #EF6323;background:#fff3ec;padding:14px 18px;box-shadow:0 0 0 4px rgba(239,99,35,.12);}
+  .req-panel.done{display:block;border:1px solid var(--seafoam);background:#f0faf8;padding:12px 18px;}
+  .req-panel-head{display:flex;align-items:center;gap:10px;}
+  .req-panel.show .req-panel-head b{color:#8a3d16;font-size:.95rem;}
+  .req-panel.done .req-panel-head b{color:var(--seafoam);font-size:.92rem;font-weight:600;}
+  .req-bang{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;background:#EF6323;color:#fff;font-size:14px;font-weight:700;flex:0 0 auto;}
+  .req-tick{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;background:var(--seafoam);color:#fff;font-size:13px;flex:0 0 auto;}
+  .req-list{margin:11px 0 0 32px;padding:0;}
+  .req-list li{margin-bottom:5px;color:#6d2f0f;line-height:1.5;}
+  .req-list li::marker{color:#EF6323;}
+  .pseaf-yn.unanswered > span{color:#8a3d16;font-weight:500;}
+  .pseaf-req-msg.show{color:#fff;font-weight:600;background:#EF6323;border-radius:6px;padding:7px 12px;display:block;}
+  .pseaf-req-msg.show::before{content:'!';display:inline-flex;align-items:center;justify-content:center;width:16px;height:16px;border-radius:50%;background:#fff;color:#EF6323;font-size:11px;font-weight:700;margin-right:7px;vertical-align:-2px;}
+  .pseaf-gate-q{flex:1;font-size:.9rem;font-weight:500;color:var(--ink);line-height:1.45;}
+  .pseaf-gate-q em{display:block;font-style:normal;font-size:.8rem;font-weight:400;color:var(--grey);margin-top:2px;}
+  @media(max-width:640px){.pseaf-gate{flex-direction:column;align-items:flex-start;}}
+  .pseaf-reveal{display:none;margin-top:18px;}
+  .pseaf-reveal.open{display:block;animation:pseafIn .18s ease-out;}
+  @keyframes pseafIn{from{opacity:0;transform:translateY(-4px);}to{opacity:1;transform:none;}}
+  .pseaf-nested{margin-top:14px;padding:14px 16px;border:1px solid #f6d3bf;border-left:3px solid #EF6323;border-radius:8px;background:#fffaf7;}
+  .pseaf-nested label{font-size:.85rem;font-weight:500;}
+  .pseaf-nested textarea{min-height:70px;}
+  .pseaf-gate-state{display:flex;align-items:flex-start;gap:11px;padding:14px 17px;border-radius:10px;font-size:.88rem;line-height:1.55;}
+  .pseaf-gate-state .gs-icon{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;color:#fff;font-size:13px;font-weight:700;flex:0 0 auto;margin-top:1px;}
+  .pseaf-gate-state.pending{border:2px solid #EF6323;background:#fff3ec;color:#6d2f0f;box-shadow:0 0 0 4px rgba(239,99,35,.12);}
+  .pseaf-gate-state.pending .gs-icon{background:#EF6323;}
+  .pseaf-gate-state.pending b{color:#8a3d16;}
+  .pseaf-gate-state.required{border:1px solid var(--panel-border);background:var(--panel);color:#333;}
+  .pseaf-gate-state.required .gs-icon{background:var(--ultramarine);}
+  .pseaf-gate-state.required b{color:var(--ultramarine);}
+  .pseaf-gate-state.skipped{border:1px solid var(--seafoam);background:#f0faf8;color:#333;}
+  .pseaf-gate-state.skipped .gs-icon{background:var(--seafoam);}
+  .pseaf-gate-state.skipped b{color:var(--seafoam);}
+  .pseaf-chk.act-on{background:#f7fdfc;border-radius:7px;}
+  .pseaf-chk.act-on label{font-weight:600;color:var(--ultramarine);}
+  .btn-mini{padding:6px 13px;font-size:.78rem;}
+  .dl-panel{display:none;background:#fff;border:1px solid var(--seafoam);border-radius:10px;padding:14px 16px;margin:0 0 16px;}
+  .dl-head{display:flex;align-items:flex-start;gap:11px;margin-bottom:11px;}
+  .dl-head b{display:block;color:var(--ultramarine);font-size:.92rem;margin-bottom:3px;}
+  .dl-head span{display:block;font-size:.8rem;color:var(--grey);line-height:1.5;}
+  .dl-bang{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;background:var(--seafoam);color:#fff;font-size:13px;font-weight:700;flex:0 0 auto;margin-top:1px;}
+  .dl-row{display:flex;flex-wrap:wrap;gap:9px;}
+  .dl-btn{display:inline-flex;align-items:center;gap:8px;background:#fff;color:var(--ultramarine);border:1px solid var(--ultramarine);border-radius:8px;padding:9px 15px;font-family:inherit;font-size:.83rem;font-weight:600;cursor:pointer;transition:all .13s;max-width:100%;}
+  .dl-btn:hover{background:var(--panel);box-shadow:0 3px 10px rgba(0,50,160,.12);}
+  .dl-ico{font-size:15px;line-height:1;flex:0 0 auto;}
+  .dl-name{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+  .pseaf-info{background:var(--panel);border:1px solid var(--panel-border);border-left:4px solid var(--azure);border-radius:8px;padding:13px 16px;font-size:.87rem;color:var(--ink);line-height:1.55;}
+  .pseaf-choice{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  @media(max-width:640px){.pseaf-choice{grid-template-columns:1fr;}}
+  .pseaf-opt{position:relative;border:1.5px solid var(--line);border-radius:12px;padding:18px 20px;cursor:pointer;background:#fff;transition:all .14s;display:block;margin:0;}
+  .pseaf-opt:hover{border-color:var(--azure);box-shadow:0 4px 14px rgba(0,50,160,.10);transform:translateY(-2px);}
+  .pseaf-opt input{position:absolute;opacity:0;pointer-events:none;}
+  .pseaf-opt b{display:block;font-size:.98rem;font-weight:600;color:var(--ultramarine);margin-bottom:5px;}
+  .pseaf-opt small{display:block;font-size:.82rem;color:var(--grey);line-height:1.5;}
+  .pseaf-opt .tick{position:absolute;top:14px;right:14px;width:22px;height:22px;border-radius:50%;background:var(--seafoam);color:#fff;display:none;align-items:center;justify-content:center;font-size:13px;}
+  .pseaf-opt.sel{border-color:var(--seafoam);box-shadow:0 0 0 2px rgba(45,155,142,.25);background:#f7fdfc;}
+  .pseaf-opt.sel .tick{display:flex;}
+  @media(max-width:900px){.pseaf-sig{grid-template-columns:1.6fr 1.1fr 34px;}.pseaf-sigbox{grid-column:1 / -1;}}
+  @media(max-width:640px){.pseaf-sig{grid-template-columns:1fr 34px;}.pseaf-sigbox{grid-column:1 / -1;}}
+  .pseaf-del{background:none;border:1px solid var(--steel);color:var(--grey);border-radius:6px;width:34px;height:34px;font-size:18px;line-height:1;cursor:pointer;font-family:inherit;}
+  .pseaf-del:hover{border-color:#c0392b;color:#c0392b;}
+  .btn-ghost{background:#fff;color:var(--ultramarine);border:1px solid var(--ultramarine);border-radius:8px;padding:9px 18px;font-size:.85rem;font-weight:600;cursor:pointer;font-family:inherit;}
+  .btn-ghost:hover{background:var(--panel);}
+  .pseaf-site.dim{opacity:.45;}
+  #pseafStage{position:fixed;left:-99999px;top:0;width:794px;background:#fff;}
+  #pseafStage .pdfpage{width:794px;padding:26px 30px;font-family:Arial,Helvetica,sans-serif;font-size:10.5px;color:#414142;background:#fff;box-sizing:border-box;}
+  #pseafStage .banner{background:#0032A0;color:#fff;padding:14px 18px;border-radius:4px;margin-bottom:14px;}
+  #pseafStage .banner h1{font-size:17px;margin:0;font-weight:700;}
+  #pseafStage .banner .sub{font-size:9.5px;margin-top:3px;opacity:.92;}
+  #pseafStage h2{color:#0032A0;font-size:12px;border-bottom:2px solid #EF6323;padding-bottom:3px;margin:16px 0 7px;}
+  #pseafStage table{width:100%;border-collapse:collapse;margin-bottom:8px;font-size:10px;}
+  #pseafStage td,#pseafStage th{border:1px solid #C8C9C7;padding:5px 7px;vertical-align:top;text-align:left;}
+  #pseafStage th{background:#0032A0;color:#fff;font-weight:600;}
+  #pseafStage table.meta td{border:none;padding:3px 7px;}
+  #pseafStage table.meta td.k{font-weight:700;color:#58595B;width:170px;}
+  #pseafStage td.c{text-align:center;font-size:13px;}
+  #pseafStage td.b{font-weight:700;}
+  #pseafStage td.sig{background:#fbfbfb;height:38px;vertical-align:middle;text-align:center;}
+  #pseafStage .sigimg{max-height:34px;max-width:180px;display:inline-block;}
+  #pseafStage .note{background:#fff6f0;border-left:3px solid #EF6323;padding:6px 10px;font-size:9.5px;margin:7px 0;}
+  #pseafStage .decl{font-size:9.5px;margin-bottom:8px;}
+  #pseafStage .decl ul{margin:6px 0 0;padding-left:16px;}
+  #pseafStage .decl li{margin-bottom:3px;}
+  #pseafStage .lbl{font-size:9.5px;font-weight:700;color:#58595B;margin:10px 0 4px;}
+  #pseafStage .pending{margin-top:14px;border:1px solid #C8C9C7;border-left:3px solid #0032A0;background:#f7f9fc;padding:7px 10px;font-size:9px;color:#58595B;}
+  #pseafStage .na{border:1px solid #C8C9C7;background:#fbfbfb;padding:7px 10px;font-size:10px;color:#58595B;font-style:italic;margin-bottom:8px;}
+  #pseafStage .foot{margin-top:18px;font-size:8px;color:#58595B;border-top:1px solid #C8C9C7;padding-top:7px;}
 </style>
 </head>
 <body>
@@ -123,7 +295,7 @@
 <div class="wrap">
   <!-- ===== MODE CHOOSER ===== -->
   <div id="modeChooser">
-    <div class="intro">What would you like to do? Choose an option below to begin. Each option prepares an email to <b>project@awnconsulting.com</b>, ready for you to review and send.</div>
+    <div class="intro">What would you like to do? Choose an option below to begin. The first two options prepare an email to <b>project@awnconsulting.com</b>, ready for you to review and send. The third generates a standalone PSEAF PDF.</div>
     <div class="mode-grid">
       <button type="button" class="mode-card mode-new" id="chooseNew">
         <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3v5h5"/><path d="M6 2h9l5 5v13a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1z"/><path d="M12 11v6M9 14h6"/></svg>
@@ -134,6 +306,11 @@
         <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h11l-3-3M20 16H9l3 3"/></svg>
         <strong>Convert a Proposal to a Project</strong>
         <small>Provide the won-proposal details and fee breakdown to open the project.</small>
+      </button>
+      <button type="button" class="mode-card mode-pseaf" id="choosePseaf">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v6c0 4-3 7.5-7 9-4-1.5-7-5-7-9V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg>
+        <strong>Update a PSEAF</strong>
+        <small>Complete a Project Safety &amp; Environmental Assessment Form on its own and generate the PDF.</small>
       </button>
     </div>
   </div>
@@ -163,7 +340,7 @@
     </section>
     <section class="card">
       <h2><span class="num">2</span>Project details</h2>
-      <p class="hint">Core information required to open the proposal in Vantagepoint.</p>
+      <p class="hint">Core information required to open the proposal in Vantagepoint. Choose the AWN work type that best describes the job; the correct Vantagepoint Project Type is applied for you.</p>
       <div class="grid">
         <div class="field full"><label for="projectName">Project name<span class="req">*</span></label>
           <input type="text" id="projectName" placeholder="e.g. Clonshaugh Data Centre - Acoustic Assessment" required></div>
@@ -182,8 +359,9 @@
             <option value="2361 - Construction - Residential Building Construction">2361 - Construction - Residential Building Construction (direct for contractor, residential)</option>
             <option value="2362 - Construction - Non-residential Building Construction">2362 - Construction - Non-residential Building Construction (direct for contractor, non-residential)</option>
           </select></div>
-        <div class="field"><label for="projectType">Primary project type<span class="req">*</span></label>
-          <select id="projectType" required disabled><option value="" disabled selected>Select a team first</option></select></div>
+        <div class="field"><label for="projectType">AWN work type<span class="req">*</span></label>
+          <select id="projectType" required disabled><option value="" disabled selected>Select a team first</option></select>
+          <div class="vp-hint" id="vpHint">The matching Vantagepoint Project Type is added to the email automatically.</div></div>
         <div class="field"><label for="consultants">Consultants involved<span class="req">*</span></label>
           <input type="text" id="consultants" placeholder="e.g. Jennifer Harmon, Dermot Blunnie" required></div>
         <div class="field"><label>Project currency<span class="req">*</span></label>
@@ -209,6 +387,7 @@
       <p class="hint">Pick one project type. Only one template can be chosen per project.</p>
       <div id="templateArea"><div class="tpl-placeholder">Select a team above to see the available templates.</div></div>
     </section>
+    <div class="req-panel" id="npReqPanel"></div>
     <div class="actions">
       <button type="submit" class="btn" id="submitBtn" disabled>Create / Update Email Draft</button>
       <span class="status" id="statusMsg">Complete all required fields and choose one template.</span>
@@ -220,13 +399,13 @@
   <!-- ===== VIEW: CONVERT PROPOSAL TO PROJECT ===== -->
   <div id="viewConvert" style="display:none;">
     <button type="button" class="back-link" data-back>&#8592; Back to menu</button>
-    <div class="intro">Provide the details of the won proposal to convert it into a live project. A message to <b>project@awnconsulting.com</b> is prepared, pre-filled and ready to send. Fields marked <span style="color:var(--sapphire);font-weight:700;">*</span> are required.</div>
+    <div class="intro">Provide the details of the won proposal to convert it into a live project, then complete the Project Safety &amp; Environmental Assessment Form. A message to <b>project@awnconsulting.com</b> is prepared with the project details. The completed PSEAF PDF and an editable copy are downloaded separately for the project folder. Fields marked <span style="color:var(--sapphire);font-weight:700;">*</span> are required.</div>
     <form id="convertForm" novalidate>
       <section class="card">
-        <h2><span class="num">1</span>Proposal &amp; project details</h2>
+        <h2><span class="num">1</span>Project details</h2>
         <p class="hint">Core information required to convert the proposal into a live project.</p>
         <div class="grid">
-          <div class="field"><label for="cvPropNo">Proposal number to be converted<span class="req">*</span></label>
+          <div class="field"><label for="cvPropNo">Project number<span class="req">*</span></label>
             <input type="text" id="cvPropNo" placeholder="e.g. R267501.1234" required></div>
           <div class="field"><label for="cvCompany">Company (Client Name)<span class="req">*</span></label>
             <input type="text" id="cvCompany" placeholder="e.g. Graham Construction Ltd" required></div>
@@ -277,17 +456,48 @@
             <textarea id="cvNotes" placeholder="e.g. invoicing instructions, pending PO or ITP"></textarea></div>
         </div>
       </section>
+      <section class="card" id="cvPseafGateCard">
+        <h2><span class="num">4</span>Project Safety &amp; Environmental Assessment Form</h2>
+        <p class="hint">Whether a PSEAF is required is determined by the <b>Desktop study?</b> answer in step 1.</p>
+        <div class="pseaf-gate-state" id="cvGateState"></div>
+      </section>
+      <div id="cvPseafHost"></div>
+      <div class="req-panel" id="cvReqPanel"></div>
       <div class="actions">
-        <button type="submit" class="btn" id="cvSubmitBtn" disabled>Create / Update Email Draft</button>
+        <button type="submit" class="btn" id="cvSubmitBtn" disabled>Create Email Draft</button>
         <span class="status" id="cvStatus">Complete all required fields.</span>
       </div>
     </form>
-    <div class="summary" id="cvSummaryBox"><h3>Project conversion prepared</h3><dl id="cvSummaryList"></dl></div>
+    <div class="summary" id="cvSummaryBox"><h3>Project conversion prepared</h3><div class="dl-panel" id="cvDownloads"></div><dl id="cvSummaryList"></dl></div>
   </div><!-- /viewConvert -->
+
+  <!-- ===== VIEW: STANDALONE PSEAF ===== -->
+  <div id="viewPseaf" style="display:none;">
+    <button type="button" class="back-link" data-back>&#8592; Back to menu</button>
+    <div class="intro">Complete the <b>Project Safety &amp; Environmental Assessment Form</b> for an existing project. Select <b>Generate PSEAF PDF</b> to create and download the document, ready to save to the project folder. No email is sent in this mode.</div>
+    <form id="pseafForm" novalidate>
+      <div id="psPseafHost"></div>
+      <div class="req-panel" id="psReqPanel"></div>
+      <div class="actions">
+        <button type="submit" class="btn" id="psSubmitBtn" disabled>Generate PSEAF PDF</button>
+        <span class="status" id="psStatus">Complete the required project and site details.</span>
+      </div>
+    </form>
+    <div class="summary" id="psSummaryBox"><h3>PSEAF generated</h3><div class="dl-panel" id="psDownloads"></div><dl id="psSummaryList"></dl></div>
+  </div><!-- /viewPseaf -->
+  <!-- ===== VIEW: CHANGE LOG ===== -->
+  <div id="viewChangelog" style="display:none;">
+    <button type="button" class="back-link" data-back>&#8592; Back</button>
+    <h1 class="title" style="font-size:22px;margin-bottom:6px;">Change log</h1>
+    <div class="intro">A record of what has changed in the Project Administration Portal, newest first. Released during September 2026.</div>
+    <div class="cl-wrap">
+<div class="cl-entry current"><div class="cl-head"><span class="cl-ver">4.0</span><span class="cl-title">Conversion email carries project details only</span><span class="cl-now">current</span></div><ul class="cl-list"><li>The PSEAF summary has been removed from the conversion email. The email now contains only the project information from steps 1 to 3.</li><li>All safety assessment detail stays in the PSEAF PDF and the editable HTML template, which are downloaded for the project folder.</li><li>The attachment prompt has gone with it, since the PDF is no longer intended to travel with the email.</li></ul></div><div class="cl-entry"><div class="cl-head"><span class="cl-ver">3.9</span><span class="cl-title">Site work question asked first</span></div><ul class="cl-list"><li>The &quot;Will you also be carrying out the site work?&quot; question now appears at the top of the PSEAF instead of below Subcontractors.</li><li>Answering Yes still reveals the essential kit checklist, the lone working assessment and the emergency and client contacts further down the form.</li></ul></div><div class="cl-entry"><div class="cl-head"><span class="cl-ver">3.8</span><span class="cl-title">Footer tidy and change log</span></div><ul class="cl-list"><li>Footer now shows the version number only, with the descriptive suffix removed.</li><li>The version number is a link that opens this change log.</li></ul></div><div class="cl-entry"><div class="cl-head"><span class="cl-ver">3.7</span><span class="cl-title">Site contacts follow the site work gate</span></div><ul class="cl-list"><li>Emergency, next of kin and client contacts are revealed and become mandatory on Convert when you confirm you are attending site yourself.</li><li>Those contacts stay deferred to the field engineer only when someone else is attending site.</li><li>The contacts hint text and the PDF both follow the same rule, so a partial form is never presented as complete.</li></ul></div><div class="cl-entry"><div class="cl-head"><span class="cl-ver">3.6</span><span class="cl-title">Subcontractor details gated</span></div><ul class="cl-list"><li>Subcontractor details are only collected when a subcontractor is being used.</li><li>Name and contact number are captured; no signature is taken, since subcontractors do not sign this form.</li><li>Details moved under the RAMS notice in the Subcontractors section so they appear and disappear with the gate.</li><li>The PDF subcontractor table drops its signature column and is omitted entirely when no subcontractor is used.</li></ul></div><div class="cl-entry"><div class="cl-head"><span class="cl-ver">3.5</span><span class="cl-title">Site work gate and staff contacts at sign-off</span></div><ul class="cl-list"><li>New question on Convert: will you also be carrying out the site work?</li><li>Answering Yes reveals the essential kit checklist and lone working assessment and makes them mandatory.</li><li>The Project Manager contact box was removed; each person recorded at the sign-off now carries their own contact number.</li><li>Section numbers renumber at runtime so the sequence never shows a gap.</li></ul></div><div class="cl-entry"><div class="cl-head"><span class="cl-ver">3.4</span><span class="cl-title">PDF section and page-break fixes</span></div><ul class="cl-list"><li>Fixed deferred sections still printing: the deferral flags were computed but never returned, so every section appeared regardless.</li><li>Fixed duplicated content across page breaks: the whole page image was being redrawn on each page at a negative offset, re-printing about 20 mm at the top of the next page.</li><li>Pages are now cut into true page-sized tiles, with the break nudged to a blank pixel row so a line of text is never sliced in half.</li></ul></div><div class="cl-entry"><div class="cl-head"><span class="cl-ver">3.3</span><span class="cl-title">PDF mirrors the on-screen form</span></div><ul class="cl-list"><li>Sections that were not shown on screen are omitted from the PDF rather than printed with a placeholder.</li><li>Headings renumber as they are emitted, so the sequence is always contiguous.</li><li>A single footer line records which sections the field engineer will complete later.</li></ul></div><div class="cl-entry"><div class="cl-head"><span class="cl-ver">3.2</span><span class="cl-title">Reliable multi-file download</span></div><ul class="cl-list"><li>Both files are now built in memory before anything downloads, so the status message reflects what was actually produced.</li><li>Downloads are released through a queue spaced 1.2 seconds apart, because browsers silently block a second automatic download.</li><li>Every generated file also appears as an explicit Download button in the summary, so nothing is ever stranded.</li><li>Object URLs are kept alive for 60 seconds so slow Save As dialogs do not lose the file.</li></ul></div><div class="cl-entry"><div class="cl-head"><span class="cl-ver">3.1</span><span class="cl-title">No auto-scroll on the Convert page</span></div><ul class="cl-list"><li>Answering the Desktop study question no longer scrolls the page down to the PSEAF; the form is revealed in place.</li></ul></div><div class="cl-entry"><div class="cl-head"><span class="cl-ver">3.0</span><span class="cl-title">Editable PSEAF template saved with the PDF</span></div><ul class="cl-list"><li>Both the Convert and standalone flows now download an editable, self-contained HTML copy of the PSEAF alongside the PDF.</li><li>Named projectnumber_projectdescription_PSEAF-template.html for saving in the project folder.</li><li>Carries the full form, including kit and lone working, with everything captured so far pre-filled and signatures embedded.</li><li>Opens by double-click with no add-in required, and can regenerate the PDF or re-save itself.</li></ul></div><div class="cl-entry"><div class="cl-head"><span class="cl-ver">2.9</span><span class="cl-title">Convert PSEAF trimmed for field completion</span></div><ul class="cl-list"><li>Essential kit and lone working removed from the Convert PSEAF, to be completed nearer the site visit.</li><li>Contacts on Convert reduced to the Project Manager number.</li></ul></div><div class="cl-entry"><div class="cl-head"><span class="cl-ver">2.8</span><span class="cl-title">Concise activity risk assessments</span></div><ul class="cl-list"><li>Each hazard reduced to a single line of hazard plus controls, roughly 60 per cent shorter.</li><li>All controls that carry weight were retained, including the do-not-enter instruction for confined spaces and the 85 dB(A) threshold.</li></ul></div><div class="cl-entry"><div class="cl-head"><span class="cl-ver">2.7</span><span class="cl-title">Desktop study gate and activity presets</span></div><ul class="cl-list"><li>The PSEAF choice cards were replaced: whether a PSEAF is required is now determined by the Desktop study answer.</li><li>Seven activity presets added (noise survey, air monitoring, acoustic testing, site inspections, ecology field survey, water sampling, drilling supervision).</li><li>Selecting activities generates a risk assessment from a shared hazard library, with hazards common to several activities listed only once.</li><li>Generated text stays fully editable, and your own wording is never overwritten without confirmation.</li></ul></div><div class="cl-entry"><div class="cl-head"><span class="cl-ver">2.6</span><span class="cl-title">Free-text risk assessment and mandatory contacts</span></div><ul class="cl-list"><li>The EHS procedure tick list was replaced with a free-text site specific risk assessment.</li><li>Free-text box added for additional kit or equipment.</li><li>Key contact numbers became mandatory.</li><li>Subcontractor question simplified to Yes or No, with the AWN RAMS, insurance and safety statement notice shown on Yes.</li><li>Proposal number renamed to project number throughout.</li></ul></div><div class="cl-entry"><div class="cl-head"><span class="cl-ver">2.5</span><span class="cl-title">Outstanding items checklist</span></div><ul class="cl-list"><li>Every form now shows a checklist of outstanding mandatory items immediately above the submit button.</li><li>Empty required fields are highlighted in orange, clearing as soon as they are completed.</li></ul></div><div class="cl-entry"><div class="cl-head"><span class="cl-ver">2.4</span><span class="cl-title">Prominent validation</span></div><ul class="cl-list"><li>Unanswered mandatory questions are highlighted far more clearly, with a warning badge and pulse.</li><li>The N/A option was removed from the lone working questions, which are now Yes or No and all mandatory.</li></ul></div><div class="cl-entry"><div class="cl-head"><span class="cl-ver">2.3</span><span class="cl-title">Explicit Yes or No answers required</span></div><ul class="cl-list"><li>The subcontractor and lone working questions no longer default to No and must be answered explicitly.</li><li>The PDF distinguishes a deliberate No from an unanswered question.</li></ul></div><div class="cl-entry"><div class="cl-head"><span class="cl-ver">2.2</span><span class="cl-title">Conditional sections</span></div><ul class="cl-list"><li>Subcontractor details and the lone working assessment are only shown when confirmed as relevant.</li><li>Confirming night-time lone working reveals a mandatory site specific justification.</li></ul></div><div class="cl-entry"><div class="cl-head"><span class="cl-ver">2.1</span><span class="cl-title">Optional PSEAF and mandatory sign-off</span></div><ul class="cl-list"><li>Convert to Project gained an option to submit with or without a PSEAF.</li><li>Staff sign-off became mandatory across all forms.</li></ul></div><div class="cl-entry"><div class="cl-head"><span class="cl-ver">2.0</span><span class="cl-title">Baseline</span></div><ul class="cl-list"><li>New Proposal, Convert to Project and standalone PSEAF.</li><li>Vantagepoint project type mapping and signature capture.</li></ul></div>
+    </div>
+  </div><!-- /viewChangelog -->
 
   <footer class="page-foot"><div class="bar"></div>
     AWN Consulting Ltd, The Tecpro Building, IDA Business &amp; Technology Park, Clonshaugh, Dublin 17, D17 XD90 &nbsp;|&nbsp; A Trinity Consultants company
-    <div class="version">Version 1.6 &nbsp;|&nbsp; New Proposal &amp; Convert to Project</div>
+    <div class="version"><button type="button" class="version-link" id="versionLink" title="View the change log">Version 4.0</button></div>
   </footer>
 </div>
 <script src="https://appsforoffice.microsoft.com/lib/1.1/hosted/office.js"></script>
@@ -298,7 +508,1574 @@
   const statusMsg = document.getElementById('statusMsg');
   const projectType = document.getElementById('projectType');
   const templateArea = document.getElementById('templateArea');
+  /* All drafts created by this tool are addressed to the AWN project admin inbox. */
   const RECIPIENT = 'project@awnconsulting.com';
+
+/* =====================================================================
+   PSEAF (Project Safety & Environmental Assessment Form) - EHS-P-001-F1
+   Integrated into the Convert-to-Project flow and available standalone.
+   Sections are generated from the arrays below and injected into a host
+   container, so the same code serves both the Convert view (prefix "cv")
+   and the standalone view (prefix "ps").
+   ===================================================================== */
+
+/* ---- Reference data (verbatim from EHS-P-001-F1) ---- */
+const PSEAF_KIT = ["PPE (Boots, Hi-Viz, Glasses)","Mobile Phone (Charged)","First Aid Kit","Life Jacket","Suitable Clothing","Safe Pass Card","Gloves","Copy of this form (PSEAF)"];
+const PSEAF_LONE_NO = ["Are you fit to work alone?","Is your mobile phone with your person, charged and switched on?","Does your team know you are working alone and where you are?"];
+const PSEAF_LONE_YES = ["Does the workplace present a special risk to a lone worker? (e.g. chemicals, violence, heavy lifting, inexperience)"];
+const PSEAF_LONE_NIGHT = ["Is the lone working assessment being carried out at night time?"];
+const PSEAF_SUB_NOTICE = "All subcontractors are subject to AWN policies regarding the collection of a site specific Risk Assessment and Method Statement (RAMS), confirmation of insurance and safety statement.";
+const PSEAF_STANDARD_CONTACTS = [
+  ["Emergency (Gardai, Ambulance, Fire)","999 or 112"],
+  ["Gas Networks Ireland","1850 20 50 50"],
+  ["ESB Networks","1850 372 999"],
+  ["EPA Incident Hotline (environment)","1890 33 55 999"]
+];
+const PSEAF_DECLARATION = [
+  "I am appropriately qualified and suitably experienced to perform these tasks.",
+  "I have received appropriate training and guidance as part of my company's own systems to enable me to complete these tasks in a safe manner.",
+  "I have received, read and understand the Safety Procedures and Risk Assessments associated with this Project, and the associated site specific risks and mitigations.",
+  "In the event of new risks being identified as work progresses, it is my responsibility to ensure the site supervisor or Project Manager is aware and to stop work if necessary so that risk assessments, control measures and this form are updated appropriately.",
+  "It is my responsibility to ensure that I, and anyone working under my supervision, follow the Safety Procedures and Risk Assessments and use the safety equipment provided."
+];
+
+
+/* =====================================================================
+   SITE SPECIFIC RISK ASSESSMENT - ACTIVITY PRESETS
+   Each activity maps to a set of hazard entries. Selecting more than one
+   activity merges the entries and de-duplicates any hazard they share,
+   so a common hazard such as driving for work is only ever listed once.
+   Entries are emitted in PSEAF_HAZARD_ORDER so the text always reads in
+   a sensible sequence regardless of the order activities were ticked.
+   ===================================================================== */
+
+/* Hazard library: id -> { label, text }.
+   The label is used as the de-duplication key and is written as the
+   opening of each paragraph, e.g. "Driving for work: ...". */
+const PSEAF_HAZARDS = {
+  access: {
+    label: 'Site access and induction',
+    text: 'confirm access in advance, report to the site office and complete the site induction. Follow EHS-P-002.'
+  },
+  driving: {
+    label: 'Driving for work',
+    text: 'plan the route, drive to the conditions, take breaks on long journeys and do not use a phone at the wheel. Follow EHS-P-004.'
+  },
+  lone: {
+    label: 'Lone working',
+    text: 'tell the office your location and expected duration, keep a charged phone on you and check in on leaving. Follow EHS-P-003.'
+  },
+  uneven: {
+    label: 'Uneven ground, slips and trips',
+    text: 'wear safety boots with good grip, plan access routes and use a torch in poor light.'
+  },
+  weather: {
+    label: 'Adverse weather',
+    text: 'check the forecast, carry suitable protective clothing and postpone the visit if conditions become unsafe. Follow EHS-P-006.'
+  },
+  manual: {
+    label: 'Manual handling',
+    text: 'use a trolley or two-person lift for heavy or awkward items, keep loads close and avoid twisting. Follow EHS-P-005.'
+  },
+  traffic: {
+    label: 'Site traffic and mobile plant',
+    text: 'wear high-visibility clothing and a hard hat, use pedestrian routes and make eye contact with operators before approaching.'
+  },
+  roadside: {
+    label: 'Working near live carriageways',
+    text: 'stand well back from the running lane facing oncoming traffic, wear high-visibility clothing and do not work on the carriageway without traffic management.'
+  },
+  public: {
+    label: 'Public interaction and antisocial behaviour',
+    text: 'stay aware of your surroundings, avoid confrontation, keep valuables out of sight and withdraw if you feel unsafe.'
+  },
+  livestock: {
+    label: 'Livestock and farm animals',
+    text: 'confirm access with the landowner, keep to field boundaries, close gates and do not enter fields with a bull or cattle with calves.'
+  },
+  ticks: {
+    label: 'Ticks and Lyme disease',
+    text: 'cover exposed skin, use insect repellent, check for ticks after the survey and seek medical advice if a rash develops.'
+  },
+  height: {
+    label: 'Working at height',
+    text: 'use fixed access and edge protection where available, maintain three points of contact on ladders and do not overreach. Follow EHS-P-011.'
+  },
+  electrical: {
+    label: 'Electrical hazards',
+    text: 'inspect leads before use, use RCD-protected supplies, keep equipment clear of water and route cables away from walkways.'
+  },
+  noise: {
+    label: 'High noise levels',
+    text: 'wear hearing protection above 85 dB(A), limit time near the source and warn others before starting any test signal.'
+  },
+  dust: {
+    label: 'Dust, fumes and emissions',
+    text: 'work upwind where possible and wear respiratory protection if required by the task or the site.'
+  },
+  water: {
+    label: 'Working in or near water',
+    text: 'sample from a stable bank using a pole, wear a life jacket where there is a risk of immersion and never work alone at the water\u2019s edge. Follow EHS-P-007.'
+  },
+  weils: {
+    label: 'Weil\u2019s disease and biological hazards',
+    text: 'wear gloves, cover cuts with waterproof dressings, do not eat or drink while working and wash hands before breaks.'
+  },
+  confined: {
+    label: 'Confined spaces',
+    text: 'do not enter. Sample or inspect from the surface and refer any need for entry to the Project Manager.'
+  },
+  chemicals: {
+    label: 'Sample preservatives',
+    text: 'keep bottles upright and separated, wear gloves and eye protection when filling, and carry a spill kit and eyewash. Follow EHS-P-010.'
+  },
+  sharps: {
+    label: 'Contaminated material and sharps',
+    text: 'wear gloves and safety boots, do not handle waste by hand, do not disturb suspected asbestos and report any suspect material.'
+  },
+  services: {
+    label: 'Buried and overhead services',
+    text: 'review service drawings, complete a CAT and Genny scan before breaking ground and keep clear of overhead lines.'
+  },
+  rotating: {
+    label: 'Drilling plant and rotating machinery',
+    text: 'stay outside the exclusion zone while the rig operates, wear close-fitting clothing and agree an emergency stop signal with the driller. Follow EHS-P-008.'
+  },
+  equipment: {
+    label: 'Unattended equipment',
+    text: 'secure equipment away from public access, label it with AWN contact details and keep cables clear of walkways.'
+  }
+};
+
+/* Canonical output order so the assessment always reads logically. */
+const PSEAF_HAZARD_ORDER = [
+  'access','driving','lone','uneven','weather','manual','traffic','roadside',
+  'public','livestock','ticks','height','electrical','noise','dust','water',
+  'weils','confined','chemicals','sharps','services','rotating','equipment'
+];
+
+/* The activities offered, each mapped to its typical hazards. */
+const PSEAF_ACTIVITIES = [
+  { id:'noise',    name:'Noise Survey',
+    hazards:['access','driving','lone','uneven','weather','manual','roadside','public','noise','equipment'] },
+  { id:'air',      name:'Air Monitoring',
+    hazards:['access','driving','lone','uneven','weather','manual','traffic','height','electrical','dust','equipment'] },
+  { id:'acoustic', name:'Acoustic Testing',
+    hazards:['access','driving','uneven','manual','traffic','height','electrical','noise','dust'] },
+  { id:'inspect',  name:'Site Inspections',
+    hazards:['access','driving','lone','uneven','weather','traffic','public','livestock','sharps'] },
+  { id:'ecology',  name:'Ecology Field Survey',
+    hazards:['access','driving','lone','uneven','weather','public','livestock','ticks','water','weils'] },
+  { id:'water',    name:'Water Sampling',
+    hazards:['access','driving','lone','uneven','weather','manual','livestock','water','weils','confined','chemicals'] },
+  { id:'drilling', name:'Drilling Supervision',
+    hazards:['access','driving','uneven','weather','manual','traffic','noise','dust','sharps','services','rotating'] }
+];
+
+/* Merge the hazards for a set of activity ids, de-duplicated and ordered. */
+function pseafHazardIdsFor(activityIds){
+  const set = {};
+  activityIds.forEach(function(aid){
+    const act = PSEAF_ACTIVITIES.filter(function(a){ return a.id === aid; })[0];
+    if(!act){ return; }
+    act.hazards.forEach(function(h){ set[h] = true; });
+  });
+  return PSEAF_HAZARD_ORDER.filter(function(h){ return set[h]; });
+}
+
+/* Build the assessment text for a set of activity ids. */
+function pseafHazardText(activityIds){
+  return pseafHazardIdsFor(activityIds).map(function(h){
+    const z = PSEAF_HAZARDS[h];
+    return z.label + ': ' + z.text;
+  }).join('\n\n');
+}
+
+/* ---- Section builder -------------------------------------------------
+   startNum = the step number this PSEAF block begins at, so the numbered
+   circles continue seamlessly from the host form's existing sections.
+   includeProjectFields = true for the standalone view (which has no
+   Convert fields to reuse); false inside Convert, where Company, Project
+   Manager, Desktop study and Project folder already exist and must NOT
+   be duplicated.
+   -------------------------------------------------------------------- */
+const PSEAF_SIG_HOOKS = {};
+const PSEAF_REVEAL_SYNC = {};
+const PSEAF_OPTS = {};
+const PSEAF_ADD_ROW = {};
+const PSEAF_RENUMBER = {};
+/* opts:
+     skipKit         - omit the Essential kit checklist
+     skipLone        - omit the Lone working assessment
+     minimalContacts - Project Manager number only (office stays pre-filled)
+   Anything omitted here is completed by the field engineer before the
+   site visit, using the standalone Update a PSEAF form. */
+function buildPseafSections(host, p, startNum, includeProjectFields, opts){
+  opts = opts || {};
+  PSEAF_OPTS[p] = opts;
+  function onSigChange(){ if(typeof PSEAF_SIG_HOOKS[p] === 'function'){ PSEAF_SIG_HOOKS[p](); } }
+  let n = startNum;
+  let html = '';
+
+  html += '<div class="pseaf-band">'
+        + '<strong>Project Safety &amp; Environmental Assessment Form (PSEAF)</strong>'
+        + '<span>EHS-P-001-F1 &nbsp;|&nbsp; A completed PDF and an editable HTML copy of this form are downloaded for the project folder. These are not included in the email.</span>'
+        + (opts.siteWorkGate
+            ? '<span class="pseaf-band-note">If you are not the person attending site, the essential kit checklist and lone working assessment are completed by the field engineer nearer the site visit, using the editable PSEAF saved in the project folder.</span>'
+            : '')
+        + '</div>';
+
+  /* ---- Site work gate ------------------------------------------------
+     Asked first, because the answer decides how much of the rest of the
+     form applies. gate() is hoisted, so calling it here is safe. ----- */
+  if(opts.siteWorkGate){
+    html += '<section class="card">'
+      + '<h2><span class="num">'+(n++)+'</span>Who is attending site?</h2>'
+      + '<p class="hint">Answer this first: it decides whether you complete the essential kit checklist, the lone working assessment and the full site contacts here, or leave them for the field engineer.</p>'
+      + gate('SiteWork','Will you also be carrying out the site work?','Answer No if another member of staff will attend site.')
+      + '</section>';
+  }
+
+  if(includeProjectFields){
+    html += '<section class="card">'
+      + '<h2><span class="num">'+(n)+'</span>Project details</h2>'
+      + '<p class="hint">Identify the project this assessment relates to.</p>'
+      + '<div class="grid">'
+      + '<div class="field"><label for="'+p+'ProjNo">Project number<span class="req">*</span></label><input type="text" id="'+p+'ProjNo" placeholder="e.g. R267501.1234"></div>'
+      + '<div class="field"><label for="'+p+'Client">Client<span class="req">*</span></label><input type="text" id="'+p+'Client" placeholder="Client name"></div>'
+      + '<div class="field"><label for="'+p+'Pm">Project Manager<span class="req">*</span></label><input type="text" id="'+p+'Pm" placeholder="Name of Project Manager"></div>'
+      + '<div class="field full"><label for="'+p+'Folder">Project folder location on server<span class="req">*</span></label><input type="text" id="'+p+'Folder" placeholder="e.g. \\Contracts\\A\\AWN"></div>'
+      + '</div></section>';
+    n++;
+  }
+
+  /* Site details (never duplicated - Convert has no site fields) */
+  html += '<section class="card">'
+    + '<h2><span class="num">'+(n++)+'</span>Site details</h2>'
+    + '<p class="hint">Where the work takes place and when the assessment was carried out.</p>'
+    + '<div class="grid">'
+    + '<div class="field full"><label for="'+p+'Desc">Project description<span class="req">*</span></label><input type="text" id="'+p+'Desc" placeholder="Short description of the works"></div>'
+    + '<div class="field"><label for="'+p+'Site">Site location<span class="req">*</span></label><input type="text" id="'+p+'Site" placeholder="Site address / location"></div>'
+    + '<div class="field"><label for="'+p+'Date">Assessment date<span class="req">*</span></label><input type="date" id="'+p+'Date"></div>'
+    + '</div>'
+    + '</section>';
+
+  /* Site specific risk assessment. Selecting activities pre-fills the text
+     with the typical hazards and controls for each; the text stays editable. */
+  let actRows = '';
+  PSEAF_ACTIVITIES.forEach(function(a){
+    actRows += '<div class="pseaf-chk"><input type="checkbox" id="'+p+'act_'+a.id+'" data-act="'+a.id+'"><label for="'+p+'act_'+a.id+'">'+escapeHtml(a.name)+'</label></div>';
+  });
+  html += '<section class="card pseaf-site">'
+    + '<h2><span class="num">'+(n++)+'</span>Site specific risk assessment</h2>'
+    + '<p class="hint">Tick the activities involved and a concise set of hazards and controls is added below. Shared hazards are only listed once. Edit the text freely to suit the project.</p>'
+    + '<h4 class="pseaf-sub">Activities on this project</h4>'
+    + '<div class="pseaf-chk-grid" id="'+p+'ActGrid">'+actRows+'</div>'
+    + '<div class="pseaf-req-msg" id="'+p+'ActMsg"></div>'
+    + '<div class="field" style="margin-top:14px;"><label for="'+p+'SiteRA">Site specific risk assessment<span class="req">*</span></label>'
+    + '<textarea id="'+p+'SiteRA" rows="12" placeholder="Tick one or more activities above to insert suggested hazards and controls, or type your own site specific risk assessment here."></textarea>'
+    + '<div class="pseaf-req-msg" id="'+p+'SiteRAMsg"></div></div>'
+    + '<div class="grid" style="margin-top:16px;">'
+    + '<div class="field"><label for="'+p+'SpecProc">Project specific procedures (if required)</label><input type="text" id="'+p+'SpecProc"></div>'
+    + '<div class="field"><label for="'+p+'SpecRA">Project specific risk assessment (if required)</label><input type="text" id="'+p+'SpecRA"></div>'
+    + '</div></section>';
+
+  /* Reusable Yes/No gate used to reveal a conditional block */
+  function gate(key, question, hint){
+    /* Deliberately no default: the user must answer explicitly. */
+    return '<div class="pseaf-gate unanswered" id="'+p+key+'Gate">'
+      + '<span class="pseaf-gate-q">'+escapeHtml(question)+'<span class="req">*</span>'+(hint?'<em>'+escapeHtml(hint)+'</em>':'')+'</span>'
+      + '<div class="pseaf-yn-opts">'
+      +   '<label><input type="radio" name="'+p+key+'" value="Yes"> Yes</label>'
+      +   '<label><input type="radio" name="'+p+key+'" value="No"> No</label>'
+      + '</div></div>'
+      + '<div class="pseaf-req-msg" id="'+p+key+'Msg"></div>';
+  }
+
+  /* Subcontractors - a simple Yes/No; answering Yes shows the AWN policy notice */
+  html += '<section class="card pseaf-site">'
+    + '<h2><span class="num">'+(n++)+'</span>Subcontractors</h2>'
+    + '<p class="hint">Confirm whether a subcontractor is being used on this project.</p>'
+    + gate('SubUsed','Is a subcontractor being used on this project?')
+    + '<div class="pseaf-reveal" id="'+p+'SubBlock">'
+    +   '<div class="pseaf-info">' + escapeHtml(PSEAF_SUB_NOTICE) + '</div>'
+    +   '<h4 class="pseaf-sub" style="margin-top:16px;">Subcontractor details<span class="req">*</span></h4>'
+    +   '<p class="hint" style="margin-left:0;">Record the name and contact number for each subcontractor. Subcontractors do not sign this form; their own RAMS, insurance and safety statement are collected separately.</p>'
+    +   '<div id="'+p+'SubRows"></div>'
+    +   '<div class="pseaf-req-msg" id="'+p+'SubMsg"></div>'
+    +   '<button type="button" class="btn-ghost" id="'+p+'AddSub">+ Add subcontractor</button>'
+    + '</div>'
+    + '</section>';
+
+  /* Kit and lone working sit inside one block so the site work gate can
+     reveal or hide them together. Outside Convert the block is always open. */
+  html += '<div class="pseaf-reveal' + (opts.siteWorkGate ? '' : ' open') + '" id="'+p+'SiteWorkBlock">';
+
+  /* Essential kit */
+  {
+    let kitRows = '';
+    PSEAF_KIT.forEach(function(k,i){
+      kitRows += '<div class="pseaf-chk"><input type="checkbox" id="'+p+'kit_'+i+'"><label for="'+p+'kit_'+i+'">'+escapeHtml(k)+'</label></div>';
+    });
+    html += '<section class="card pseaf-site">'
+      + '<h2><span class="num"></span>Essential kit checklist</h2>'
+      + '<p class="hint">Tick the kit appropriate to the task being carried out.</p>'
+      + '<div class="pseaf-chk-grid">'+kitRows+'</div>'
+      + '<div class="field" style="margin-top:16px;"><label for="'+p+'KitOther">Additional kit or equipment (if required)</label>'
+      + '<textarea id="'+p+'KitOther" rows="2" placeholder="e.g. sound level meter and calibrator, gas detector, ladder, water sampling kit"></textarea></div>'
+      + '</section>';
+  }
+
+  /* Lone working - the whole assessment only appears if lone working applies */
+  /* Yes/No only, and nothing pre-selected: once lone working is confirmed
+     every question must be answered deliberately. */
+  function yn(arr, key, noteHtml){
+    let out = '<div class="pseaf-note">'+noteHtml+'</div>';
+    arr.forEach(function(q,i){
+      out += '<div class="pseaf-yn unanswered" data-lone-q="'+key+'_'+i+'">'
+        + '<span>'+escapeHtml(q)+'<span class="req">*</span></span>'
+        + '<div class="pseaf-yn-opts">'
+        +   '<label><input type="radio" name="'+p+key+'_'+i+'" value="Yes"> Yes</label>'
+        +   '<label><input type="radio" name="'+p+key+'_'+i+'" value="No"> No</label>'
+        + '</div></div>';
+    });
+    return out;
+  }
+  html += '<section class="card pseaf-site">'
+    + '<h2><span class="num"></span>Lone working assessment</h2>'
+    + '<p class="hint">Confirm whether any part of this work involves a person working alone.</p>'
+    + gate('LoneUsed','Is lone working required on this project?')
+    + '<div class="pseaf-reveal" id="'+p+'LoneBlock">'
+    +   yn(PSEAF_LONE_NO,'ln','If you answer <b>NO</b> to any of the below, <b>DO NOT</b> continue with the site visit.')
+    +   yn(PSEAF_LONE_YES,'ly','If you answer <b>YES</b> to the below, <b>DO NOT</b> continue with the site visit.')
+    +   yn(PSEAF_LONE_NIGHT,'lnt','If you answer <b>YES</b> to the below, do not continue as a lone worker unless a site specific risk assessment permits it.')
+    +   '<div class="pseaf-req-msg" id="'+p+'LoneQMsg"></div>'
+    +   '<div class="pseaf-reveal pseaf-nested" id="'+p+'NightBlock">'
+    +     '<div class="field"><label for="'+p+'NightJust">Site specific risk assessment justification for night-time lone working<span class="req">*</span></label>'
+    +     '<textarea id="'+p+'NightJust" rows="3" placeholder="No anti social behaviour expected at the site, access by car has been confirmed, no rough terrain expected"></textarea>'
+    +     '<div class="pseaf-req-msg" id="'+p+'NightMsg"></div></div>'
+    +   '</div>'
+    + '</div>'
+    + '</section>';
+
+  html += '</div>';   /* close the site work block */
+
+  /* Contacts, declaration and sign-off */
+  let declLi = '';
+  PSEAF_DECLARATION.forEach(function(t){ declLi += '<li>'+escapeHtml(t)+'</li>'; });
+  let stdRows = '';
+  PSEAF_STANDARD_CONTACTS.forEach(function(c){
+    stdRows += '<tr><td>'+escapeHtml(c[0])+'</td><td>'+escapeHtml(c[1])+'</td></tr>';
+  });
+  html += '<section class="card">'
+    + '<h2><span class="num">'+(n++)+'</span>Key contacts, declaration &amp; sign-off</h2>'
+    /* The emergency, next of kin and client contacts are only deferred to
+       the field engineer when someone else is attending site. If this
+       person is doing the site work, they complete them here, so the
+       block is revealed by the site work gate above. */
+    + '<p class="hint" id="'+p+'ContactsHint">'
+    +   (opts.minimalContacts
+          ? 'The office number is included automatically. Staff numbers are recorded at the sign-off below.'
+          : 'Record the site contact numbers below. Individual staff numbers are recorded at the sign-off further down.')
+    + '</p>'
+    + '<div class="grid">'
+    + '<div class="field"><label for="'+p+'cOffice">Office contact'
+    +   (opts.minimalContacts ? '' : '<span class="req">*</span>')
+    +   '</label><input type="tel" id="'+p+'cOffice" value="018474220" placeholder="Phone number"></div>'
+    + '</div>'
+    + '<div class="pseaf-reveal' + (opts.minimalContacts ? '' : ' open') + '" id="'+p+'ContactsBlock">'
+    +   '<div class="grid" style="margin-top:14px;">'
+    +   '<div class="field"><label for="'+p+'cEmerg">Emergency contact / next of kin<span class="req">*</span></label><input type="tel" id="'+p+'cEmerg" placeholder="Phone number"></div>'
+    +   '<div class="field"><label for="'+p+'cClient">Client representative (or N/A)<span class="req">*</span></label><input type="text" id="'+p+'cClient" placeholder="Name / number or N/A"></div>'
+    +   '</div>'
+    + '</div>'
+    + '<div class="pseaf-std"><b>Standard numbers included automatically on the PDF</b>'
+    + '<table class="pseaf-std-table">'+stdRows+'</table></div>'
+    + '<h4 class="pseaf-sub" style="margin-top:18px;">Declaration</h4>'
+    + '<div class="pseaf-decl">I confirm that:<ul>'+declLi+'</ul></div>'
+    + '<h4 class="pseaf-sub" style="margin-top:18px;">Staff sign-off<span class="req">*</span></h4>'
+    + '<p class="hint" style="margin-left:0;">Record everyone working on the project, including the Project Manager. Enter the name and contact number for each person and upload their signature.</p>'
+    + '<div id="'+p+'StaffRows"></div>'
+    + '<div class="pseaf-req-msg" id="'+p+'StaffMsg"></div>'
+    + '<button type="button" class="btn-ghost" id="'+p+'AddStaff">+ Add person</button>'
+    + '</section>';
+
+  host.innerHTML = html;
+
+  /* ---- Conditional reveals ------------------------------------------
+     Subcontractor checklist, the lone working assessment, and the
+     night-time justification each stay hidden until confirmed. ------- */
+  function gateVal(key){
+    const r = document.querySelector('input[name="'+p+key+'"]:checked');
+    return r ? r.value : '';
+  }
+  function nightSelected(){
+    for(let i=0;i<PSEAF_LONE_NIGHT.length;i++){
+      const r = document.querySelector('input[name="'+p+'lnt_'+i+'"]:checked');
+      if(r && r.value === 'Yes'){ return true; }
+    }
+    return false;
+  }
+  /* Renumber the visible sections so hiding a block never leaves a gap. */
+  function sectionVisible(sec){
+    let el = sec;
+    while(el && el !== host){
+      if(el.classList && el.classList.contains('pseaf-reveal') && !el.classList.contains('open')){ return false; }
+      el = el.parentNode;
+    }
+    return true;
+  }
+  function renumberSections(){
+    let i = startNum;
+    host.querySelectorAll('section.card').forEach(function(sec){
+      const badge = sec.querySelector('h2 .num');
+      if(!badge){ return; }
+      if(sectionVisible(sec)){ badge.textContent = i++; }
+      else { badge.textContent = ''; }
+    });
+  }
+  PSEAF_RENUMBER[p] = renumberSections;
+
+  function syncReveals(){
+    const subOn  = gateVal('SubUsed')  === 'Yes';
+    const loneOn = gateVal('LoneUsed') === 'Yes';
+    /* Site work gate controls the kit + lone working block, and whether
+       the full set of site contacts is required here or deferred. */
+    if(opts.siteWorkGate){
+      const swBlock = document.getElementById(p+'SiteWorkBlock');
+      const swOn = gateVal('SiteWork') === 'Yes';
+      if(swBlock){ swBlock.classList.toggle('open', swOn); }
+      const swGate = document.getElementById(p+'SiteWorkGate');
+      if(swGate){ swGate.classList.toggle('unanswered', gateVal('SiteWork') === ''); }
+
+      const cBlock = document.getElementById(p+'ContactsBlock');
+      if(cBlock){ cBlock.classList.toggle('open', swOn); }
+      const cHint = document.getElementById(p+'ContactsHint');
+      if(cHint){
+        cHint.textContent = swOn
+          ? 'You are attending site, so record the emergency, next of kin and client contacts here. Individual staff numbers are recorded at the sign-off below.'
+          : 'The office number is included automatically. Emergency, next of kin and client contacts are added by the field engineer before the site visit. Staff numbers are recorded at the sign-off below.';
+      }
+    }
+    renumberSections();
+    const subBlock   = document.getElementById(p+'SubBlock');
+    const loneBlock  = document.getElementById(p+'LoneBlock');
+    const nightBlock = document.getElementById(p+'NightBlock');
+    const subGate  = document.getElementById(p+'SubUsedGate');
+    const loneGate = document.getElementById(p+'LoneUsedGate');
+    if(subGate){  subGate.classList.toggle('unanswered',  gateVal('SubUsed')  === ''); }
+    if(loneGate){ loneGate.classList.toggle('unanswered', gateVal('LoneUsed') === ''); }
+    if(subBlock){  subBlock.classList.toggle('open', subOn); }
+    if(loneBlock){ loneBlock.classList.toggle('open', loneOn); }
+    /* Highlight any lone working question still unanswered */
+    if(loneBlock){
+      loneBlock.querySelectorAll('[data-lone-q]').forEach(function(row){
+        const key = row.getAttribute('data-lone-q');
+        const answered = !!document.querySelector('input[name="'+p+key+'"]:checked');
+        row.classList.toggle('unanswered', loneOn && !answered);
+      });
+    }
+
+    /* Night justification only matters when lone working applies */
+    const nightOn = loneOn && nightSelected();
+    if(nightBlock){ nightBlock.classList.toggle('open', nightOn); }
+    if(typeof PSEAF_SIG_HOOKS[p] === 'function'){ PSEAF_SIG_HOOKS[p](); }
+  }
+  host.addEventListener('change', syncReveals);
+  PSEAF_REVEAL_SYNC[p] = syncReveals;
+
+  /* ---- Activity presets -------------------------------------------
+     Ticking an activity rebuilds the suggested assessment from the
+     hazard library, merging the hazards for every selected activity and
+     removing duplicates. The text stays fully editable: if the user has
+     changed it, their wording is kept and a reset link is offered. ---- */
+  const raBox    = document.getElementById(p+'SiteRA');
+  const raMsg    = document.getElementById(p+'ActMsg');
+  const raGrid   = document.getElementById(p+'ActGrid');
+  let   raAuto   = '';   /* the last text this tool generated */
+
+  function pseafSelectedActivities(){
+    const out = [];
+    if(!raGrid){ return out; }
+    raGrid.querySelectorAll('input[type="checkbox"][data-act]').forEach(function(cb){
+      if(cb.checked){ out.push(cb.getAttribute('data-act')); }
+    });
+    return out;
+  }
+
+  function pseafRaMessage(ids, hazCount, kept){
+    if(!raMsg){ return; }
+    if(!ids.length){
+      raMsg.textContent = 'No activities selected. Tick the activities above, or write the assessment yourself.';
+      raMsg.className = 'pseaf-req-msg';
+      return;
+    }
+    let t = ids.length + ' activit' + (ids.length > 1 ? 'ies' : 'y') + ' selected. '
+          + hazCount + ' hazard' + (hazCount === 1 ? '' : 's') + ' included, duplicates removed.';
+    if(kept){ t += ' Your edited text has been kept. Use Reset to replace it with the suggestion.'; }
+    raMsg.textContent = t;
+    raMsg.className = 'pseaf-req-msg ok';
+  }
+
+  function pseafApplyActivities(force){
+    const ids  = pseafSelectedActivities();
+    const haz  = pseafHazardIdsFor(ids);
+    const text = ids.length ? pseafHazardText(ids) : '';
+
+    if(raGrid){
+      raGrid.querySelectorAll('input[type="checkbox"][data-act]').forEach(function(cb){
+        const row = cb.parentNode;
+        if(row && row.classList){ row.classList.toggle('act-on', cb.checked); }
+      });
+    }
+
+    if(!raBox){ pseafRaMessage(ids, haz.length, false); return; }
+
+    const current   = (raBox.value || '').trim();
+    const untouched = (current === '') || (current === (raAuto || '').trim());
+
+    if(force || untouched){
+      raBox.value = text;
+      raAuto = text;
+      pseafRaMessage(ids, haz.length, false);
+    } else {
+      /* Preserve the user's own wording. */
+      pseafRaMessage(ids, haz.length, true);
+    }
+    if(typeof PSEAF_SIG_HOOKS[p] === 'function'){ PSEAF_SIG_HOOKS[p](); }
+  }
+
+  if(raGrid){
+    raGrid.addEventListener('change', function(e){
+      if(e.target && e.target.getAttribute && e.target.getAttribute('data-act')){
+        pseafApplyActivities(false);
+      }
+    });
+    /* Reset control, added after the message line */
+    const resetWrap = document.createElement('div');
+    resetWrap.style.margin = '2px 0 4px';
+    const resetBtn = document.createElement('button');
+    resetBtn.type = 'button';
+    resetBtn.className = 'btn-ghost btn-mini';
+    resetBtn.textContent = 'Reset text to suggestion';
+    resetBtn.addEventListener('click', function(){ pseafApplyActivities(true); });
+    resetWrap.appendChild(resetBtn);
+    if(raMsg && raMsg.parentNode){ raMsg.parentNode.insertBefore(resetWrap, raMsg.nextSibling); }
+  }
+  pseafApplyActivities(false);
+
+  /* Wire up the repeatable sign-off rows */
+  /* Each sign-off row carries an optional signature image. The picked file
+     is downscaled to a transparent-friendly PNG data URI and stored on the
+     row itself, so it can be embedded directly in the PDF. */
+  function addRow(containerId, cls, placeholder, noSig){
+    const c = document.getElementById(containerId);
+    const row = document.createElement('div');
+    row.className = 'pseaf-sig';
+    /* Contact details are captured here rather than in the contacts block,
+       so the Project Manager and every other attendee are recorded with
+       their signature on one line. */
+    const contactCls = cls.replace(/Name$/, 'Contact');
+    /* Subcontractors are recorded by name and number only; they do not sign
+       this form, so the signature control is omitted for those rows. */
+    if(noSig){ row.classList.add('no-sig'); }
+    row.innerHTML = '<input type="text" class="'+cls+'" placeholder="'+placeholder+'">'
+      + '<input type="tel" class="'+contactCls+'" placeholder="Contact number">'
+      + (noSig ? '' :
+          '<div class="pseaf-sigbox">'
+          +   '<label class="pseaf-siglbl">'
+          +     '<input type="file" class="pseaf-sigfile" accept="image/png,image/jpeg,image/gif,image/webp">'
+          +     '<span class="pseaf-sigcta">Upload signature</span>'
+          +   '</label>'
+          +   '<img class="pseaf-sigimg" alt="Signature preview">'
+          +   '<button type="button" class="pseaf-sigclear" title="Remove signature">&times;</button>'
+          + '</div>')
+      + '<button type="button" class="pseaf-del" title="Remove row">&times;</button>';
+
+    const fileInput = row.querySelector('.pseaf-sigfile');
+    const preview   = row.querySelector('.pseaf-sigimg');
+    const cta       = row.querySelector('.pseaf-sigcta');
+    const clearBtn  = row.querySelector('.pseaf-sigclear');
+
+    if(!fileInput){
+      /* No signature on this row: wire the delete control and finish. */
+      row.querySelector('.pseaf-del').addEventListener('click', function(){
+        row.remove();
+        if(typeof onSigChange === 'function'){ onSigChange(); }
+      });
+      c.appendChild(row);
+      return;
+    }
+
+    function clearSig(){
+      row.dataset.sig = '';
+      preview.removeAttribute('src');
+      row.classList.remove('has-sig');
+      cta.textContent = 'Upload signature';
+      fileInput.value = '';
+      if(typeof onSigChange === 'function'){ onSigChange(); }
+    }
+    clearBtn.addEventListener('click', clearSig);
+
+    fileInput.addEventListener('change', function(){
+      const f = fileInput.files && fileInput.files[0];
+      if(!f){ return; }
+      if(!/^image\//.test(f.type)){
+        cta.textContent = 'Not an image file';
+        return;
+      }
+      if(f.size > 4 * 1024 * 1024){
+        cta.textContent = 'Image too large (max 4 MB)';
+        return;
+      }
+      cta.textContent = 'Reading...';
+      const reader = new FileReader();
+      reader.onload = function(ev){
+        const img = new Image();
+        img.onload = function(){
+          /* Downscale so the PDF stays a sensible size. Signatures are wide
+             and short, so cap the width and keep the aspect ratio. */
+          const maxW = 420, maxH = 150;
+          let w = img.width, h = img.height;
+          const scale = Math.min(maxW / w, maxH / h, 1);
+          w = Math.round(w * scale); h = Math.round(h * scale);
+          const cv = document.createElement('canvas');
+          cv.width = w; cv.height = h;
+          const ctx = cv.getContext('2d');
+          ctx.drawImage(img, 0, 0, w, h);
+          row.dataset.sig = cv.toDataURL('image/png');
+          preview.src = row.dataset.sig;
+          row.classList.add('has-sig');
+          cta.textContent = 'Replace signature';
+          if(typeof onSigChange === 'function'){ onSigChange(); }
+        };
+        img.onerror = function(){ cta.textContent = 'Could not read that image'; };
+        img.src = ev.target.result;
+      };
+      reader.onerror = function(){ cta.textContent = 'Could not read that file'; };
+      reader.readAsDataURL(f);
+    });
+
+    row.querySelector('.pseaf-del').addEventListener('click',function(){
+      row.remove();
+      if(typeof onSigChange === 'function'){ onSigChange(); }
+    });
+    c.appendChild(row);
+  }
+  PSEAF_ADD_ROW[p] = addRow;
+  document.getElementById(p+'AddStaff').addEventListener('click',function(){ addRow(p+'StaffRows', p+'StaffName','Name'); });
+  document.getElementById(p+'AddSub').addEventListener('click',function(){ addRow(p+'SubRows', p+'SubName','Subcontractor name / company', true); });
+  addRow(p+'StaffRows', p+'StaffName','Name');
+  addRow(p+'SubRows',   p+'SubName','Subcontractor name / company', true);
+
+  syncReveals();
+
+  /* Default the assessment date to today */
+  const dt = document.getElementById(p+'Date');
+  if(dt){ dt.valueAsDate = new Date(); }
+
+  return n; /* next available step number */
+}
+
+
+/* ---- Staff sign-off validation (shared by both flows) ----
+   At least one person must be recorded, and every recorded person must
+   have both a name and an uploaded signature. */
+function pseafStaffState(p){
+  const rows = document.querySelectorAll('#'+p+'StaffRows .pseaf-sig');
+  let total = 0, named = 0, signed = 0, contacted = 0, incomplete = 0;
+  rows.forEach(function(row){
+    total++;
+    const nameEl = row.querySelector('.'+p+'StaffName');
+    const conEl  = row.querySelector('.'+p+'StaffContact');
+    const hasName = !!(nameEl && nameEl.value.trim());
+    const hasCon  = !!(conEl && conEl.value.trim());
+    const hasSig  = !!row.dataset.sig;
+    if(hasName) named++;
+    if(hasName && hasSig) signed++;
+    if(hasName && hasCon) contacted++;
+    if(hasName !== hasSig) incomplete++;
+    if(hasName && !hasSig){ row.classList.add('needs-sig'); } else { row.classList.remove('needs-sig'); }
+    /* Contact is captured here now that the standalone PM number is gone. */
+    reqMark(conEl, hasName && !hasCon);
+  });
+  return { total:total, named:named, signed:signed, contacted:contacted, incomplete:incomplete,
+           ok:(named > 0 && signed === named && contacted === named && incomplete === 0) };
+}
+
+function pseafStaffMessage(p){
+  const st = pseafStaffState(p);
+  const el = document.getElementById(p+'StaffMsg');
+  if(!el){ return st; }
+  if(st.named === 0){
+    el.textContent = 'At least one member of staff must be recorded and signed off.';
+    el.className = 'pseaf-req-msg show';
+  } else if(st.contacted < st.named){
+    el.textContent = (st.named - st.contacted) + ' of ' + st.named + ' recorded staff still need a contact number.';
+    el.className = 'pseaf-req-msg show';
+  } else if(st.signed < st.named){
+    el.textContent = (st.named - st.signed) + ' of ' + st.named + ' recorded staff still need a signature uploaded.';
+    el.className = 'pseaf-req-msg show';
+  } else {
+    el.textContent = st.signed + ' of ' + st.named + ' staff recorded with contact details and signature.';
+    el.className = 'pseaf-req-msg ok';
+  }
+  return st;
+}
+
+
+
+
+/* ---- Subcontractor details ----
+   Only required when the subcontractor gate is answered Yes. Each row
+   needs a name and a contact number; no signature is collected. */
+function pseafSubState(p){
+  const gateEl = document.querySelector('input[name="'+p+'SubUsed"]:checked');
+  const subOn = gateEl ? gateEl.value === 'Yes' : false;
+  const el = document.getElementById(p+'SubMsg');
+
+  if(!subOn){
+    if(el){ el.textContent = ''; el.className = 'pseaf-req-msg'; }
+    return { required:false, named:0, contacted:0, ok:true };
+  }
+
+  const rows = document.querySelectorAll('#'+p+'SubRows .pseaf-sig');
+  let named = 0, contacted = 0;
+  rows.forEach(function(row){
+    const nameEl = row.querySelector('.'+p+'SubName');
+    const conEl  = row.querySelector('.'+p+'SubContact');
+    const hasName = !!(nameEl && nameEl.value.trim());
+    const hasCon  = !!(conEl && conEl.value.trim());
+    if(hasName) named++;
+    if(hasName && hasCon) contacted++;
+    reqMark(conEl, hasName && !hasCon);
+  });
+
+  const ok = named > 0 && contacted === named;
+  if(el){
+    if(named === 0){
+      el.textContent = 'Record the name and contact number of at least one subcontractor.';
+      el.className = 'pseaf-req-msg show';
+    } else if(contacted < named){
+      el.textContent = (named - contacted) + ' of ' + named + ' subcontractors still need a contact number.';
+      el.className = 'pseaf-req-msg show';
+    } else {
+      el.textContent = named + ' subcontractor' + (named > 1 ? 's' : '') + ' recorded with contact details.';
+      el.className = 'pseaf-req-msg ok';
+    }
+  }
+  return { required:true, named:named, contacted:contacted, ok:ok };
+}
+
+/* =====================================================================
+   OUTSTANDING ITEMS
+   A single component used by all three views. It highlights any
+   unanswered mandatory input in the orange warning hue and renders a
+   checklist of what is still missing immediately above the submit
+   button, so the user never has to hunt up the page.
+   ===================================================================== */
+
+/* Mark or clear the warning state on a single field */
+function reqMark(el, missing){
+  if(!el){ return; }
+  el.classList.toggle('req-missing', !!missing);
+  const field = el.closest ? el.closest('.field') : null;
+  if(field){ field.classList.toggle('req-missing-field', !!missing); }
+}
+
+/* Mark a radio/toggle group by its container */
+function reqMarkGroup(container, missing){
+  if(!container){ return; }
+  container.classList.toggle('req-missing-group', !!missing);
+}
+
+/* Readable label for a field, taken from its own <label> where possible */
+function reqLabel(id, fallback){
+  const el = document.getElementById(id);
+  if(el){
+    const field = el.closest ? el.closest('.field') : null;
+    const lab = field ? field.querySelector('label') : null;
+    if(lab){
+      return lab.textContent.replace(/\*$/,'').trim();
+    }
+  }
+  return fallback || id;
+}
+
+/* Check a list of text/select inputs, highlight them, and return the
+   labels of any that are empty. */
+function reqCheckFields(ids, labels){
+  const missing = [];
+  ids.forEach(function(id){
+    const el = document.getElementById(id);
+    const empty = !el || !(el.value||'').trim();
+    reqMark(el, empty);
+    if(empty){ missing.push((labels && labels[id]) || reqLabel(id, id)); }
+  });
+  return missing;
+}
+
+/* Render the checklist panel above the submit button */
+function reqRenderPanel(panelId, items){
+  const panel = document.getElementById(panelId);
+  if(!panel){ return; }
+  if(!items.length){
+    panel.className = 'req-panel done';
+    panel.innerHTML = '<div class="req-panel-head">'
+      + '<span class="req-tick">&#10003;</span>'
+      + '<b>Everything required has been completed</b></div>';
+    return;
+  }
+  let li = '';
+  items.forEach(function(t){ li += '<li>'+escapeHtml(t)+'</li>'; });
+  panel.className = 'req-panel show';
+  panel.innerHTML = '<div class="req-panel-head">'
+    + '<span class="req-bang">!</span>'
+    + '<b>' + items.length + ' item' + (items.length > 1 ? 's' : '') + ' still to complete</b></div>'
+    + '<ul class="req-list">' + li + '</ul>';
+}
+
+/* ---- Mandatory Yes/No gates ----
+   The subcontractor and lone working questions must both be answered
+   explicitly before a PSEAF can be produced. */
+function pseafGateState(p){
+  function val(key){
+    const r = document.querySelector('input[name="'+p+key+'"]:checked');
+    return r ? r.value : '';
+  }
+  /* A gate that was not rendered for this flow is not applicable. */
+  function present(key){
+    return !!document.querySelector('input[name="'+p+key+'"]');
+  }
+  const subOn  = present('SubUsed');
+  const loneOn = present('LoneUsed');
+  const sub  = subOn  ? val('SubUsed')  : 'n/a';
+  const lone = loneOn ? val('LoneUsed') : 'n/a';
+  const missing = [];
+  if(subOn  && !sub)  missing.push('subcontractor');
+  if(loneOn && !lone) missing.push('lone working');
+
+  function msg(key, value, label){
+    const el = document.getElementById(p+key+'Msg');
+    if(!el){ return; }
+    if(!value){
+      el.textContent = 'Please answer the ' + label + ' question.';
+      el.className = 'pseaf-req-msg show';
+    } else {
+      el.textContent = '';
+      el.className = 'pseaf-req-msg';
+    }
+  }
+  if(subOn){  msg('SubUsed',  sub,  'subcontractor'); }
+  if(loneOn){ msg('LoneUsed', lone, 'lone working'); }
+
+  return { sub:sub, lone:lone, missing:missing, ok:(missing.length === 0) };
+}
+
+
+/* ---- Lone working questions ----
+   Once lone working is confirmed, every question must be answered.
+   There is no N/A: the gate has already established relevance. */
+function pseafLoneState(p){
+  const gateEl = document.querySelector('input[name="'+p+'LoneUsed"]:checked');
+  const loneOn = gateEl ? gateEl.value === 'Yes' : false;
+  const el = document.getElementById(p+'LoneQMsg');
+
+  if(!loneOn){
+    if(el){ el.textContent = ''; el.className = 'pseaf-req-msg'; }
+    return { required:false, total:0, answered:0, ok:true };
+  }
+
+  const keys = [];
+  PSEAF_LONE_NO.forEach(function(q,i){ keys.push('ln_'+i); });
+  PSEAF_LONE_YES.forEach(function(q,i){ keys.push('ly_'+i); });
+  PSEAF_LONE_NIGHT.forEach(function(q,i){ keys.push('lnt_'+i); });
+
+  let answered = 0;
+  keys.forEach(function(k){
+    if(document.querySelector('input[name="'+p+k+'"]:checked')){ answered++; }
+  });
+  const ok = answered === keys.length;
+
+  if(el){
+    if(ok){
+      el.textContent = 'All ' + keys.length + ' lone working questions answered.';
+      el.className = 'pseaf-req-msg ok';
+    } else {
+      const left = keys.length - answered;
+      el.textContent = left + ' lone working question' + (left > 1 ? 's' : '') + ' still to be answered.';
+      el.className = 'pseaf-req-msg show';
+    }
+  }
+  return { required:true, total:keys.length, answered:answered, ok:ok };
+}
+
+/* ---- Night-time lone working justification ----
+   Required only when lone working applies and a night-time visit is
+   confirmed. */
+function pseafNightState(p){
+  const loneEl = document.querySelector('input[name="'+p+'LoneUsed"]:checked');
+  const loneOn = loneEl ? loneEl.value === 'Yes' : false;
+  let night = false;
+  for(let i=0;i<PSEAF_LONE_NIGHT.length;i++){
+    const r = document.querySelector('input[name="'+p+'lnt_'+i+'"]:checked');
+    if(r && r.value === 'Yes'){ night = true; break; }
+  }
+  const required = loneOn && night;
+  const el = document.getElementById(p+'NightJust');
+  const text = el ? (el.value||'').trim() : '';
+  const msg = document.getElementById(p+'NightMsg');
+  const ok = !required || text.length >= 15;
+  if(msg){
+    if(!required){
+      msg.textContent = '';
+      msg.className = 'pseaf-req-msg';
+    } else if(!text){
+      msg.textContent = 'A site specific risk assessment justification is required for night-time lone working.';
+      msg.className = 'pseaf-req-msg show';
+    } else if(text.length < 15){
+      msg.textContent = 'Please give a fuller justification.';
+      msg.className = 'pseaf-req-msg show';
+    } else {
+      msg.textContent = 'Justification recorded.';
+      msg.className = 'pseaf-req-msg ok';
+    }
+  }
+  return { required:required, ok:ok, text:text };
+}
+
+/* ---- Read the PSEAF fields for a given prefix ---- */
+function readPseaf(p, override){
+  override = override || {};
+  function v(id){ const e=document.getElementById(p+id); return e ? (e.value||'').trim() : ''; }
+  function c(id){ const e=document.getElementById(p+id); return !!(e && e.checked); }
+  function ynv(key,i){ const r=document.querySelector('input[name="'+p+key+'_'+i+'"]:checked'); return r ? r.value : ''; }
+
+  function gv(key){
+    const r = document.querySelector('input[name="'+p+key+'"]:checked');
+    return r ? r.value : '';
+  }
+  const subUsed  = gv('SubUsed')  === 'Yes';
+  const loneUsed = gv('LoneUsed') === 'Yes';
+
+  const kit   = PSEAF_KIT.map(function(k,i){ return { item:k, on:c('kit_'+i) }; });
+  const o = PSEAF_OPTS[p] || {};
+  const siteRA = v('SiteRA');
+  const kitOther = v('KitOther');
+  const activities = PSEAF_ACTIVITIES.filter(function(a){ return c('act_'+a.id); }).map(function(a){ return a.name; });
+  const lone  = {
+    used:  loneUsed,
+    no:    PSEAF_LONE_NO.map(function(q,i){ return { q:q, a:ynv('ln',i) }; }),
+    yes:   PSEAF_LONE_YES.map(function(q,i){ return { q:q, a:ynv('ly',i) }; }),
+    night: PSEAF_LONE_NIGHT.map(function(q,i){ return { q:q, a:ynv('lnt',i) }; })
+  };
+  const nightWorking = loneUsed && lone.night.some(function(x){ return x.a === 'Yes'; });
+  const nightJust = v('NightJust');
+  function collectRows(cls){
+    const out = [];
+    const contactCls = cls.replace(/Name$/, 'Contact');
+    document.querySelectorAll('.'+cls).forEach(function(el){
+      const name = (el.value||'').trim();
+      if(!name){ return; }
+      const row = el.closest('.pseaf-sig');
+      const cEl = row ? row.querySelector('.'+contactCls) : null;
+      out.push({
+        name:name,
+        contact:(cEl && cEl.value) ? cEl.value.trim() : '',
+        sig:(row && row.dataset.sig) ? row.dataset.sig : ''
+      });
+    });
+    return out;
+  }
+  const staff = collectRows(p+'StaffName');
+  const subNames = collectRows(p+'SubName').map(function(r){ return r.name; });
+  const subRowsSigned = collectRows(p+'SubName');
+
+  return {
+    projNo:  override.projNo  !== undefined ? override.projNo  : v('ProjNo'),
+    client:  override.client  !== undefined ? override.client  : v('Client'),
+    pm:      override.pm      !== undefined ? override.pm      : v('Pm'),
+    folder:  override.folder  !== undefined ? override.folder  : v('Folder'),
+    desc:    v('Desc'),
+    site:    v('Site'),
+    date:    v('Date') || new Date().toISOString().slice(0,10),
+    siteRA:siteRA, kitOther:kitOther, activities:activities,
+    specProc:v('SpecProc') || '(none)',
+    specRA:  v('SpecRA')   || '(none)',
+    contacts:{ office:v('cOffice')||'018474220', emerg:v('cEmerg')||'(not given)', client:v('cClient')||'N/A' },
+    kit:kit, lone:lone, staff:staff, subNames:subNames, subSigned:subRowsSigned,
+    subUsed:subUsed, loneUsed:loneUsed, nightWorking:nightWorking, nightJust:nightJust,
+    subAnswered:(gv('SubUsed') !== ''), loneAnswered:(gv('LoneUsed') !== ''),
+    /* Which sections were NOT presented on this page. The PDF renderer
+       uses these to omit them entirely rather than printing unanswered
+       questions the user was never shown. */
+    /* With the site work gate, the sections are deferred only when the
+       person completing this form is not the one attending site. */
+    kitDeferred: o.siteWorkGate ? (gv('SiteWork') !== 'Yes') : !!o.skipKit,
+    loneDeferred: o.siteWorkGate ? (gv('SiteWork') !== 'Yes') : !!o.skipLone,
+    siteWorkBySelf: o.siteWorkGate ? (gv('SiteWork') === 'Yes') : true,
+    siteWorkAnswered: o.siteWorkGate ? (gv('SiteWork') !== '') : true,
+    /* Contacts are only reduced when the field engineer will complete
+       them later, i.e. when this person is not attending site. */
+    contactsMinimal: o.minimalContacts ? (o.siteWorkGate ? (gv('SiteWork') !== 'Yes') : true) : false
+  };
+}
+
+/* ---- Render the PSEAF as print-ready A4 HTML for the PDF ---- */
+function pseafPdfHtml(d){
+  const tick = '&#9745;', box = '&#9744;';
+  function row(label,val){ return '<tr><td class="k">'+escapeHtml(label)+'</td><td>'+escapeHtml(val||'')+'</td></tr>'; }
+
+  let kitRows='';
+  d.kit.forEach(function(k){ kitRows += '<tr><td class="c">'+(k.on?tick:box)+'</td><td>'+escapeHtml(k.item)+'</td></tr>'; });
+  function loneTbl(arr){ let r=''; arr.forEach(function(x){ r += '<tr><td>'+escapeHtml(x.q)+'</td><td class="c b">'+escapeHtml(x.a || 'Not answered')+'</td></tr>'; }); return r; }
+  function sigCell(sig){
+    return sig
+      ? '<td class="sig"><img src="'+sig+'" class="sigimg" alt=""></td>'
+      : '<td class="sig">&nbsp;</td>';
+  }
+  function signRow(r){
+    return '<tr><td>'+escapeHtml(r.name)+'</td>'
+         + '<td>'+escapeHtml(r.contact || '')+'</td>'
+         + sigCell(r.sig)+'</tr>';
+  }
+  let staffRows = d.staff.length
+      ? d.staff.map(signRow).join('')
+      : '<tr><td>&nbsp;</td><td>&nbsp;</td><td class="sig">&nbsp;</td></tr><tr><td>&nbsp;</td><td>&nbsp;</td><td class="sig">&nbsp;</td></tr>';
+  const subSigned = d.subSigned || d.subNames.map(function(n){ return { name:n, contact:'', sig:'' }; });
+  /* Subcontractors are listed by name and contact only; they do not sign. */
+  function subRow(r){
+    return '<tr><td>'+escapeHtml(r.name)+'</td><td>'+escapeHtml(r.contact || '')+'</td></tr>';
+  }
+  let subNameRows = subSigned.length
+      ? subSigned.map(subRow).join('')
+      : '<tr><td>&nbsp;</td><td>&nbsp;</td></tr>';
+  let stdRows='';
+  PSEAF_STANDARD_CONTACTS.forEach(function(c){ stdRows += row(c[0], c[1]); });
+  let declLi='';
+  PSEAF_DECLARATION.forEach(function(t){ declLi += '<li>'+escapeHtml(t)+'</li>'; });
+
+  /* ---- Section numbering ------------------------------------------
+     Sections that were not presented on screen are omitted entirely
+     rather than printed with a placeholder, so the PDF only ever shows
+     questions the user was actually asked. Headings are numbered as they
+     are emitted, so the sequence never has gaps. ------------------- */
+  let __sec = 0;
+  function sec(title){ return '<h2>' + (++__sec) + '. ' + escapeHtml(title) + '</h2>'; }
+
+  /* Sections deferred to the field engineer, noted in the footer. */
+  const deferred = [];
+  if(d.kitDeferred){ deferred.push('essential kit checklist'); }
+  if(d.loneDeferred){ deferred.push('lone working assessment'); }
+  if(d.contactsMinimal){ deferred.push('emergency and client contacts'); }
+  const deferredNote = deferred.length
+    ? '<div class="pending">Completed at project set-up. The ' + escapeHtml(deferred.join(', '))
+      + ' will be completed by the field engineer before the site visit, using the editable PSEAF saved in the project folder.</div>'
+    : '';
+
+  return ''
+  + '<div class="pdfpage">'
+  + '<div class="banner"><h1>AWN Risk Assessment &ndash; PSEAF</h1>'
+  + '<div class="sub">Project Safety &amp; Environmental Assessment Form &middot; EHS-P-001-F1 &middot; A Trinity Consultants Company</div></div>'
+  + sec('Project details')
+  + '<table class="meta">'
+  + row('Project number', d.projNo) + row('Client', d.client)
+  + row('Project description', d.desc) + row('Site location', d.site)
+  + row('Project Manager', d.pm) + row('Assessment date', d.date)
+  + row('Project folder', d.folder)
+  + '</table>'
+
+  + sec('Site specific risk assessment')
+  + (d.activities && d.activities.length
+      ? '<div class="lbl">Activities: '+escapeHtml(d.activities.join(', '))+'</div>'
+      : '')
+  + '<table><tr><td>'+escapeHtml(d.siteRA || '(not given)').replace(/\n/g,'<br>')+'</td></tr></table>'
+  + '<table><tr><td><b>Project specific procedures:</b> '+escapeHtml(d.specProc)+'</td><td><b>Project specific RA:</b> '+escapeHtml(d.specRA)+'</td></tr></table>'
+
+  + sec('Subcontractors')
+  + (d.subUsed
+      ? '<div class="note">'+escapeHtml(PSEAF_SUB_NOTICE)+'</div>'
+        + '<table><tr><th>Subcontractor</th><th style="width:150px;">Contact</th></tr>'+subNameRows+'</table>'
+      : '<div class="na">'+(d.subAnswered ? 'No subcontractor is being used on this project.' : 'Not answered.')+'</div>')
+
+  /* Essential kit: omitted entirely when it was not on screen. */
+  + (d.kitDeferred ? ''
+      : sec('Essential kit checklist')
+        + '<table>'+kitRows+'</table>'
+        + (d.kitOther
+            ? '<div class="lbl">Additional kit or equipment</div><table><tr><td>'+escapeHtml(d.kitOther)+'</td></tr></table>'
+            : ''))
+
+  /* Lone working: omitted entirely when it was not on screen. */
+  + (d.loneDeferred ? ''
+      : sec('Lone working assessment')
+        + (d.loneUsed
+            ? '<div class="note">If you answered <b>NO</b> to any of the below, <b>DO NOT</b> continue with the site visit.</div>'
+              + '<table><tr><th>Question</th><th class="c" style="width:70px;">Answer</th></tr>'+loneTbl(d.lone.no)+'</table>'
+              + '<div class="note">If you answered <b>YES</b> to the below, <b>DO NOT</b> continue with the site visit.</div>'
+              + '<table><tr><th>Question</th><th class="c" style="width:70px;">Answer</th></tr>'+loneTbl(d.lone.yes)+'</table>'
+              + '<div class="note">If you answered <b>YES</b> to the below, do not continue as a lone worker unless a site specific risk assessment permits it.</div>'
+              + '<table><tr><th>Question</th><th class="c" style="width:70px;">Answer</th></tr>'+loneTbl(d.lone.night)+'</table>'
+              + (d.nightWorking
+                  ? '<div class="lbl">Site specific risk assessment justification for night-time lone working</div>'
+                    + '<table><tr><td>'+escapeHtml(d.nightJust || '(not given)')+'</td></tr></table>'
+                  : '')
+            : '<div class="na">'+(d.loneAnswered ? 'Lone working is not required on this project.' : 'Not answered.')+'</div>'))
+
+  + sec('Key contact phone numbers')
+  + '<table class="meta">'
+  + row('Office contact', d.contacts.office)
+  /* Next of kin and client representative are only printed where they
+     were asked for on the page. */
+  + (d.contactsMinimal ? ''
+      : row('Emergency contact / next of kin', d.contacts.emerg)
+        + row('Client representative', d.contacts.client))
+  + stdRows + '</table>'
+
+  + sec('Declaration')
+  + '<div class="decl">It is the responsibility of the Project Manager to ensure that all members of staff working on the project sign this declaration. I confirm that:<ul>'+declLi+'</ul></div>'
+  + '<table><tr><th>Name (staff)</th><th style="width:110px;">Contact</th><th style="width:170px;">Signed</th></tr>'+staffRows+'</table>'
+
+  + deferredNote
+  + '<div class="foot">AWN Consulting Limited, The Tecpro Building, IDA Business &amp; Technology Park, Clonshaugh, Dublin 17, D17 XD90 &middot; Registered in Ireland No. 319812 &middot; EHS-P-001-F1 PSEAF</div>'
+  + '</div>';
+}
+
+/* ---- Build the PDF (jsPDF + html2canvas, loaded on demand) ---- */
+function loadScriptOnce(src){
+  return new Promise(function(resolve,reject){
+    if(document.querySelector('script[data-src="'+src+'"]')){ return resolve(); }
+    const s=document.createElement('script');
+    s.src=src; s.setAttribute('data-src',src);
+    s.onload=function(){ resolve(); };
+    s.onerror=function(){ reject(new Error('Could not load '+src)); };
+    document.head.appendChild(s);
+  });
+}
+
+async function pseafBuildPdf(d){
+  await loadScriptOnce('https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js');
+  await loadScriptOnce('https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js');
+
+  const stage = document.createElement('div');
+  stage.id = 'pseafStage';
+  stage.innerHTML = pseafPdfHtml(d);
+  document.body.appendChild(stage);
+
+  const canvas = await html2canvas(stage.querySelector('.pdfpage'), { scale:2, backgroundColor:'#ffffff', useCORS:true });
+  const jsPDFCtor = (window.jspdf && window.jspdf.jsPDF) ? window.jspdf.jsPDF : window.jsPDF;
+  const pdf = new jsPDFCtor({ unit:'mm', format:'a4', orientation:'portrait' });
+
+  const pageW = pdf.internal.pageSize.getWidth();
+  const pageH = pdf.internal.pageSize.getHeight();
+  const margin = 10;
+  const imgW = pageW - margin*2;
+  const imgH = canvas.height * imgW / canvas.width;
+
+  /* ---- Pagination -------------------------------------------------
+     The canvas is cut into true page-sized tiles. The previous version
+     placed the whole image on every page at a negative offset, which
+     bled past the bottom margin and re-printed a strip of content at the
+     top of the next page (this is what duplicated a section heading).
+     Each tile is drawn onto its own canvas so there is no overlap.
+     Where possible the cut is nudged up to a blank pixel row so a line
+     of text is never sliced through the middle. ------------------- */
+  const srcCtx  = canvas.getContext('2d');
+  const pxPerMm = canvas.width / imgW;
+  const usableH = Math.floor((pageH - margin * 2) * pxPerMm);
+
+  /* Find a blank row at or just above idealY so we cut between lines. */
+  function cutPoint(idealY, minY){
+    if(idealY >= canvas.height){ return canvas.height; }
+    const look = Math.min(140, Math.max(0, idealY - minY - 1));
+    try {
+      for(let dy = 0; dy < look; dy++){
+        const y = idealY - dy;
+        const row = srcCtx.getImageData(0, y, canvas.width, 1).data;
+        let blank = true;
+        for(let x = 0; x < row.length; x += 4){
+          if(row[x] < 246 || row[x+1] < 246 || row[x+2] < 246){ blank = false; break; }
+        }
+        if(blank){ return y; }
+      }
+    } catch(err){
+      /* getImageData can throw on a tainted canvas; fall back to a hard cut. */
+      console.warn('Page-break scan unavailable, using a straight cut.', err);
+    }
+    return idealY;
+  }
+
+  let sliceTop = 0;
+  let pageNo = 0;
+  while(sliceTop < canvas.height){
+    const ideal = sliceTop + usableH;
+    const sliceBottom = (ideal >= canvas.height) ? canvas.height : cutPoint(ideal, sliceTop);
+    const sliceH = Math.max(1, sliceBottom - sliceTop);
+
+    const tile = document.createElement('canvas');
+    tile.width = canvas.width;
+    tile.height = sliceH;
+    const tctx = tile.getContext('2d');
+    tctx.fillStyle = '#ffffff';
+    tctx.fillRect(0, 0, tile.width, tile.height);
+    tctx.drawImage(canvas, 0, sliceTop, canvas.width, sliceH, 0, 0, canvas.width, sliceH);
+
+    if(pageNo > 0){ pdf.addPage(); }
+    pdf.addImage(tile.toDataURL('image/jpeg', 0.92), 'JPEG',
+                 margin, margin, imgW, sliceH / pxPerMm, undefined, 'FAST');
+
+    sliceTop = sliceBottom;
+    pageNo++;
+  }
+
+  stage.remove();
+
+  const safeProj = (d.projNo || 'Project').replace(/[^a-zA-Z0-9_\-.]/g,'_');
+  const fileName = 'PSEAF_' + safeProj + '_' + d.date + '.pdf';
+  return { blob: pdf.output('blob'), base64: pdf.output('datauristring').split(',')[1], fileName: fileName };
+}
+
+/* ---- Download manager ------------------------------------------------
+   Chrome and Edge block a second programmatic download that follows too
+   closely on the first, and when "automatic multiple downloads" is not
+   allowed they block it SILENTLY. Both files are therefore built first,
+   then released through a queue that spaces them apart, and every file is
+   also offered as an explicit Download button, because a direct click is
+   treated far more permissively than an automatic burst.
+   -------------------------------------------------------------------- */
+function pseafSaveBlob(blob, name){
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = name;
+  a.rel = 'noopener';
+  a.style.display = 'none';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  /* Long lifetime so slow Save As dialogs do not lose the blob. */
+  setTimeout(function(){ URL.revokeObjectURL(url); }, 60000);
+}
+
+function pseafDownloadQueue(files, gapMs){
+  const gap = (gapMs === undefined) ? 1200 : gapMs;
+  return files.reduce(function(chain, f, i){
+    return chain.then(function(){
+      return new Promise(function(resolve){
+        setTimeout(function(){
+          try { pseafSaveBlob(f.blob, f.name); }
+          catch(err){ console.error('Download failed for ' + f.name, err); }
+          resolve();
+        }, i === 0 ? 0 : gap);
+      });
+    });
+  }, Promise.resolve());
+}
+
+function pseafRenderDownloads(containerId, files){
+  const el = document.getElementById(containerId);
+  if(!el){ return; }
+  if(!files || !files.length){ el.style.display = 'none'; el.innerHTML = ''; return; }
+  let h = '<div class="dl-head"><span class="dl-bang">&#8681;</span>'
+    + '<div><b>Files generated for this project</b>'
+    + '<span>Both files should have downloaded automatically. If one did not appear, '
+    + 'select it below. Some browsers block a second automatic download without warning.</span></div></div>'
+    + '<div class="dl-row">';
+  files.forEach(function(f, i){
+    h += '<button type="button" class="dl-btn" data-dl="' + i + '">'
+       + '<span class="dl-ico">&#8681;</span>'
+       + '<span class="dl-name">' + escapeHtml(f.name) + '</span></button>';
+  });
+  h += '</div>';
+  el.innerHTML = h;
+  el.style.display = 'block';
+  el.querySelectorAll('[data-dl]').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      const f = files[parseInt(btn.getAttribute('data-dl'), 10)];
+      if(f){ pseafSaveBlob(f.blob, f.name); }
+    });
+  });
+}
+
+function pseafDownloadPdf(pdf){
+  pseafSaveBlob(pdf.blob, pdf.fileName);
+}
+
+
+/* =====================================================================
+   PSEAF HTML TEMPLATE WRITER
+   Produces a standalone, self-contained HTML copy of the PSEAF with the
+   details captured here already filled in. The file is saved alongside
+   the PDF in the project folder so the form can be reopened, amended and
+   a fresh PDF produced later, without needing this add-in.
+
+   The template always contains the FULL form, including the essential
+   kit checklist and the lone working assessment, even where those were
+   deferred on the Convert-to-Project page, because those are exactly the
+   sections the field engineer completes nearer the site visit.
+
+   The template is built by serialising the live functions and reference
+   data from this page, so it can never drift out of step with the form
+   the user has just completed.
+   ===================================================================== */
+
+/* Turn a value into safe JavaScript source for embedding in the template */
+function tplLiteral(v){
+  return JSON.stringify(v)
+    .replace(/</g, '\\u003c')
+    .replace(/>/g, '\\u003e')
+    .replace(/\u2028/g, '\\u2028')
+    .replace(/\u2029/g, '\\u2029');
+}
+
+/* Build a filename: projectnumber_projectdescription_PSEAF-template.html */
+function pseafTemplateFileName(d){
+  function clean(s, fallback){
+    const t = String(s || '').trim().replace(/[\\\/:*?"<>|]/g, ' ')
+      .replace(/\s+/g, ' ').trim().replace(/ /g, '-');
+    return t ? t.slice(0, 60) : fallback;
+  }
+  const proj = clean(d.projNo, 'Project');
+  const desc = clean(d.desc, 'PSEAF');
+  return proj + '_' + desc + '_PSEAF-template.html';
+}
+
+/* Assemble the standalone template document */
+function pseafTemplateHtml(d){
+  const styleEl = document.querySelector('style');
+  const css = styleEl ? styleEl.textContent : '';
+
+  const logoEl = document.querySelector('.brand-logo');
+  const logoSrc = logoEl ? logoEl.getAttribute('src') : '';
+
+  /* Reference data carried across verbatim */
+  const consts = ''
+    + 'const PSEAF_KIT = '               + tplLiteral(PSEAF_KIT) + ';\n'
+    + 'const PSEAF_LONE_NO = '           + tplLiteral(PSEAF_LONE_NO) + ';\n'
+    + 'const PSEAF_LONE_YES = '          + tplLiteral(PSEAF_LONE_YES) + ';\n'
+    + 'const PSEAF_LONE_NIGHT = '        + tplLiteral(PSEAF_LONE_NIGHT) + ';\n'
+    + 'const PSEAF_SUB_NOTICE = '        + tplLiteral(PSEAF_SUB_NOTICE) + ';\n'
+    + 'const PSEAF_STANDARD_CONTACTS = ' + tplLiteral(PSEAF_STANDARD_CONTACTS) + ';\n'
+    + 'const PSEAF_DECLARATION = '       + tplLiteral(PSEAF_DECLARATION) + ';\n'
+    + 'const PSEAF_HAZARDS = '           + tplLiteral(PSEAF_HAZARDS) + ';\n'
+    + 'const PSEAF_HAZARD_ORDER = '      + tplLiteral(PSEAF_HAZARD_ORDER) + ';\n'
+    + 'const PSEAF_ACTIVITIES = '        + tplLiteral(PSEAF_ACTIVITIES) + ';\n'
+    + 'const PSEAF_SIG_HOOKS = {};\n'
+    + 'const PSEAF_REVEAL_SYNC = {};\n'
+    + 'const PSEAF_OPTS = {};\n'
+    + 'const PSEAF_ADD_ROW = {};\n'
+    + 'const PSEAF_RENUMBER = {};\n';
+
+  /* Live functions, serialised so the template behaves identically */
+  const fns = [
+    escapeHtml, pseafHazardIdsFor, pseafHazardText, buildPseafSections,
+    pseafStaffState, pseafStaffMessage,
+    reqMark, reqMarkGroup, reqLabel, reqCheckFields, reqRenderPanel,
+    pseafGateState, pseafSubState, pseafLoneState, pseafNightState,
+    readPseaf, pseafPdfHtml, loadScriptOnce, pseafBuildPdf, pseafSaveBlob, pseafDownloadPdf,
+    tplLiteral, pseafTemplateFileName
+  ].map(function(f){
+    /* Emit as a named assignment so the source is valid whether the
+       original was a declaration or an expression. */
+    return 'var ' + f.name + ' = ' + f.toString() + ';';
+  }).join('\n\n');
+
+  /* The captured answers */
+  const data = tplLiteral(d);
+
+  const runtime = ''
+  + 'const PREFILL = ' + data + ';\n'
+  + 'const P = "tp";\n'
+  + '\n'
+  + '/* Build the full form: project fields included, nothing skipped. */\n'
+  + 'buildPseafSections(document.getElementById("tplHost"), P, 1, true, {});\n'
+  + '\n'
+  + 'function setVal(id, v){ const e=document.getElementById(P+id); if(e && v!==undefined && v!==null){ e.value = v; } }\n'
+  + 'function setRadio(name, v){ if(!v){ return; } const r=document.querySelector(\'input[name="\'+P+name+\'"][value="\'+v+\'"]\'); if(r){ r.checked = true; } }\n'
+  + 'function setCheck(id, on){ const e=document.getElementById(P+id); if(e){ e.checked = !!on; } }\n'
+  + '\n'
+  + 'function applyPrefill(){\n'
+  + '  const d = PREFILL;\n'
+  + '  setVal("ProjNo", d.projNo); setVal("Client", d.client); setVal("Pm", d.pm); setVal("Folder", d.folder);\n'
+  + '  setVal("Desc", d.desc); setVal("Site", d.site); setVal("Date", d.date);\n'
+  + '  setVal("SiteRA", d.siteRA); setVal("KitOther", d.kitOther);\n'
+  + '  setVal("SpecProc", d.specProc === "(none)" ? "" : d.specProc);\n'
+  + '  setVal("SpecRA",   d.specRA   === "(none)" ? "" : d.specRA);\n'
+  + '  setVal("cOffice", d.contacts.office);\n'
+  + '  setVal("cEmerg", d.contacts.emerg === "(not given)" ? "" : d.contacts.emerg);\n'
+  + '  setVal("cClient", d.contacts.client === "N/A" ? "" : d.contacts.client);\n'
+  + '\n'
+  + '  /* Activities */\n'
+  + '  (d.activities||[]).forEach(function(name){\n'
+  + '    const a = PSEAF_ACTIVITIES.filter(function(x){ return x.name === name; })[0];\n'
+  + '    if(a){ setCheck("act_"+a.id, true); }\n'
+  + '  });\n'
+  + '\n'
+  + '  /* Essential kit */\n'
+  + '  (d.kit||[]).forEach(function(k,i){ setCheck("kit_"+i, k.on); });\n'
+  + '\n'
+  + '  /* Gates and lone working answers */\n'
+  + '  if(d.subAnswered){ setRadio("SubUsed", d.subUsed ? "Yes" : "No"); }\n'
+  + '  if(d.loneAnswered){ setRadio("LoneUsed", d.loneUsed ? "Yes" : "No"); }\n'
+  + '  if(d.lone){\n'
+  + '    (d.lone.no||[]).forEach(function(x,i){ setRadio("ln_"+i, x.a); });\n'
+  + '    (d.lone.yes||[]).forEach(function(x,i){ setRadio("ly_"+i, x.a); });\n'
+  + '    (d.lone.night||[]).forEach(function(x,i){ setRadio("lnt_"+i, x.a); });\n'
+  + '  }\n'
+  + '  setVal("NightJust", d.nightJust);\n'
+  + '\n'
+  + '  /* Staff and subcontractor sign-off rows, with signatures */\n'
+  + '  fillRows("StaffRows", "StaffName", "Name", d.staff||[]);\n'
+  + '  const subs = d.subSigned && d.subSigned.length ? d.subSigned\n'
+  + '             : (d.subNames||[]).map(function(n){ return { name:n, contact:"", sig:"" }; });\n'
+  + '  fillRows("SubRows", "SubName", "Subcontractor name / company", subs, true);\n'
+  + '\n'
+  + '  if(typeof PSEAF_REVEAL_SYNC[P] === "function"){ PSEAF_REVEAL_SYNC[P](); }\n'
+  + '  refresh();\n'
+  + '}\n'
+  + '\n'
+  + 'function fillRows(container, cls, placeholder, rows, noSig){\n'
+  + '  const host = document.getElementById(P+container);\n'
+  + '  if(!host){ return; }\n'
+  + '  host.innerHTML = "";\n'
+  + '  const add = PSEAF_ADD_ROW[P];\n'
+  + '  const list = rows.length ? rows : [{ name:"", contact:"", sig:"" }];\n'
+  + '  list.forEach(function(r){\n'
+  + '    add(P+container, P+cls, placeholder, noSig);\n'
+  + '    const row = host.lastElementChild;\n'
+  + '    if(!row){ return; }\n'
+  + '    const nameEl = row.querySelector("."+P+cls);\n'
+  + '    if(nameEl){ nameEl.value = r.name || ""; }\n'
+  + '    const conEl = row.querySelector("."+P+cls.replace(/Name$/, "Contact"));\n'
+  + '    if(conEl){ conEl.value = r.contact || ""; }\n'
+  + '    if(r.sig){\n'
+  + '      row.dataset.sig = r.sig;\n'
+  + '      const img = row.querySelector(".pseaf-sigimg");\n'
+  + '      if(img){ img.src = r.sig; }\n'
+  + '      row.classList.add("has-sig");\n'
+  + '      const cta = row.querySelector(".pseaf-sigcta");\n'
+  + '      if(cta){ cta.textContent = "Replace signature"; }\n'
+  + '    }\n'
+  + '  });\n'
+  + '}\n'
+  + '\n'
+  + 'const REQ = ["ProjNo","Client","Pm","Folder","Desc","Site","Date","SiteRA","cOffice","cEmerg","cClient"].map(function(s){ return P+s; });\n'
+  + 'const LABELS = {};\n'
+  + 'LABELS[P+"ProjNo"]="Project number"; LABELS[P+"Client"]="Client"; LABELS[P+"Pm"]="Project Manager";\n'
+  + 'LABELS[P+"Folder"]="Project folder location on server"; LABELS[P+"Desc"]="Project description";\n'
+  + 'LABELS[P+"Site"]="Site location"; LABELS[P+"Date"]="Assessment date";\n'
+  + 'LABELS[P+"SiteRA"]="Site specific risk assessment";\n'
+  + 'LABELS[P+"cOffice"]="Office contact"; LABELS[P+"cEmerg"]="Emergency contact / next of kin";\n'
+  + 'LABELS[P+"cClient"]="Client representative";\n'
+  + '\n'
+  + 'const btnPdf  = document.getElementById("tplPdf");\n'
+  + 'const btnSave = document.getElementById("tplSave");\n'
+  + 'const statusEl = document.getElementById("tplStatus");\n'
+  + '\n'
+  + 'function refresh(){\n'
+  + '  const outstanding = [];\n'
+  + '  reqCheckFields(REQ, LABELS).forEach(function(l){ outstanding.push(l); });\n'
+  + '  const gates = pseafGateState(P);\n'
+  + '  if(!gates.sub){  outstanding.push("Is a subcontractor being used?"); }\n'
+  + '  if(!gates.lone){ outstanding.push("Is lone working required?"); }\n'
+  + '  const subs = pseafSubState(P);\n'
+  + '  if(!subs.ok){ outstanding.push(subs.named === 0 ? "Record the subcontractor name and contact number" : "Contact number missing for " + (subs.named - subs.contacted) + " of " + subs.named + " subcontractors"); }\n'
+  + '  const loneQ = pseafLoneState(P);\n'
+  + '  if(!loneQ.ok){ outstanding.push("Lone working questions (" + loneQ.answered + " of " + loneQ.total + " answered)"); }\n'
+  + '  const night = pseafNightState(P);\n'
+  + '  if(!night.ok){ outstanding.push("Night-time lone working justification"); }\n'
+  + '  const staff = pseafStaffMessage(P);\n'
+  + '  if(!staff.ok){\n'
+  + '    outstanding.push(staff.named === 0\n'
+  + '      ? "Record at least one member of staff with a signature"\n'
+  + '      : "Signatures for " + (staff.named - staff.signed) + " of " + staff.named + " staff");\n'
+  + '  }\n'
+  + '  reqRenderPanel("tplReqPanel", outstanding);\n'
+  + '  const ok = outstanding.length === 0;\n'
+  + '  btnPdf.disabled = !ok;\n'
+  + '  statusEl.textContent = ok ? "Ready to generate an updated PSEAF PDF."\n'
+  + '                            : outstanding.length + " item" + (outstanding.length>1?"s":"") + " still to complete.";\n'
+  + '  statusEl.classList.toggle("ok", ok);\n'
+  + '}\n'
+  + 'PSEAF_SIG_HOOKS[P] = refresh;\n'
+  + 'document.getElementById("tplForm").addEventListener("input", refresh);\n'
+  + 'document.getElementById("tplForm").addEventListener("change", refresh);\n'
+  + '\n'
+  + 'btnPdf.addEventListener("click", async function(){\n'
+  + '  btnPdf.disabled = true;\n'
+  + '  statusEl.classList.remove("ok");\n'
+  + '  statusEl.textContent = "Building the PSEAF PDF...";\n'
+  + '  try {\n'
+  + '    const d = readPseaf(P);\n'
+  + '    const pdf = await pseafBuildPdf(d);\n'
+  + '    pseafDownloadPdf(pdf);\n'
+  + '    statusEl.textContent = "PSEAF downloaded as " + pdf.fileName + ". Save it to the project folder.";\n'
+  + '    statusEl.classList.add("ok");\n'
+  + '  } catch(err){\n'
+  + '    console.error(err);\n'
+  + '    statusEl.textContent = "Could not build the PDF. Check your internet connection and try again.";\n'
+  + '  }\n'
+  + '  btnPdf.disabled = false;\n'
+  + '});\n'
+  + '\n'
+  + '/* Re-save this template with the current answers baked in */\n'
+  + 'btnSave.addEventListener("click", function(){\n'
+  + '  const d = readPseaf(P);\n'
+  + '  const src = document.documentElement.outerHTML;\n'
+  + '  const marker = "const PREFILL = ";\n'
+  + '  const i = src.indexOf(marker);\n'
+  + '  const j = src.indexOf(";\\nconst P = ", i);\n'
+  + '  if(i < 0 || j < 0){\n'
+  + '    statusEl.textContent = "Could not update the template file.";\n'
+  + '    return;\n'
+  + '  }\n'
+  + '  const updated = src.slice(0, i + marker.length) + tplLiteral(d) + src.slice(j);\n'
+  + '  const blob = new Blob(["<!DOCTYPE html>\\n" + updated], { type:"text/html;charset=utf-8" });\n'
+  + '  pseafSaveBlob(blob, pseafTemplateFileName(d));\n'
+  + '  statusEl.textContent = "Template saved as " + pseafTemplateFileName(d) + ". Replace the copy in the project folder.";\n'
+  + '  statusEl.classList.add("ok");\n'
+  + '});\n'
+  + '\n'
+  + 'applyPrefill();\n';
+
+  return '<!DOCTYPE html>\n'
+    + '<html lang="en-GB">\n<head>\n<meta charset="UTF-8">\n'
+    + '<meta name="viewport" content="width=device-width, initial-scale=1.0">\n'
+    + '<title>PSEAF ' + escapeHtml(d.projNo || '') + ' ' + escapeHtml(d.desc || '') + ' | AWN Consulting</title>\n'
+    + '<link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">\n'
+    + '<style>\n' + css + '\n</style>\n</head>\n<body>\n'
+    + '<header>'
+    + (logoSrc ? '<img class="brand-logo" src="' + logoSrc + '" alt="Trinity Consultants and AWN Consulting">' : '')
+    + '<h1 class="title">Project Safety &amp; Environmental Assessment Form</h1>'
+    + '<div class="subtitle">' + escapeHtml(d.projNo || '') + ' &nbsp;&middot;&nbsp; ' + escapeHtml(d.desc || '') + '</div>'
+    + '</header>\n'
+    + '<div class="wrap">\n'
+    + '<div class="intro">This is the editable PSEAF for this project, saved alongside the PDF in the project folder. '
+    + 'The details captured when the project was set up are already filled in. Update anything that has changed, complete the '
+    + '<b>essential kit checklist</b> and the <b>lone working assessment</b> before the site visit, then select '
+    + '<b>Generate PSEAF PDF</b>. Use <b>Save updated template</b> to keep this file in step with the latest answers.</div>\n'
+    + '<form id="tplForm" novalidate><div id="tplHost"></div>\n'
+    + '<div class="req-panel" id="tplReqPanel"></div>\n'
+    + '<div class="actions">'
+    + '<button type="button" class="btn" id="tplPdf" disabled>Generate PSEAF PDF</button>'
+    + '<button type="button" class="btn-ghost" id="tplSave">Save updated template</button>'
+    + '<span class="status" id="tplStatus"></span></div></form>\n'
+    + '<footer class="page-foot"><div class="bar"></div>'
+    + 'AWN Consulting Ltd, The Tecpro Building, IDA Business &amp; Technology Park, Clonshaugh, Dublin 17, D17 XD90 &nbsp;|&nbsp; A Trinity Consultants company'
+    + '<div class="version">PSEAF template &nbsp;|&nbsp; EHS-P-001-F1 &nbsp;|&nbsp; generated ' + escapeHtml(new Date().toISOString().slice(0,10)) + '</div>'
+    + '</footer>\n</div>\n'
+    + '<scr'+'ipt>\n' + consts + '\n' + fns + '\n' + runtime + '\n<\/scr'+'ipt>\n'
+    + '</body>\n</html>';
+}
+
+/* Build the template as a { name, blob } file for the download queue. */
+function pseafTemplateFile(d){
+  const html = pseafTemplateHtml(d);
+  const name = pseafTemplateFileName(d);
+  const blob = new Blob([html], { type:'text/html;charset=utf-8' });
+  return { name:name, blob:blob };
+}
+
   const INBOX_USERS = [
     { name:'Karine Alves',     root:'C:\\Users\\KarineAlves\\Box' },
     { name:'Sinead McDermott', root:'C:\\Users\\SineadMcDermott\\Box' }
@@ -306,12 +2083,93 @@
   const PROPOSAL_REL = 'AWN\\Company\\D\\Document Templates\\Rebranded Templates 2025\\Proposal';
   const TEMPLATES_REL = PROPOSAL_REL + '\\Proposal Templates';
   const SHORT_FORM = { type:'Short Form Proposal', file:'Trinity-AWN Short Form Proposal Rev1.dotx' };
-  const PROJECT_TYPES = {
-    Air: ['Air Compliance and Regulatory Services - Comprehensive Air Compliance Support Services','Air Quality/Transportation Planning Support - Air Quality Planning Support','Air Quality/Transportation Planning Support - Transportation Planning Support','Ambient Monitoring and Meteorological Services - Ambient Monitoring Support','IH Services - Exposure Assessments and Monitoring','Modelling - General Dispersion Modelling','Other Regulatory and Technical Services - Indoor Air Quality Studies'],
-    Noise: ['Noise Services - Building Acoustics','Noise Services - Development Application','Noise Services \u2013 Environment','Noise Services - Industrial Hygiene','Noise Services \u2013 Monitoring','Noise Services \u2013 Transport'],
-    Water: ['Other Regulatory and Technical Services - Environmental Programs Development and Support','Waste Services - Waste Management Services \u2013 Other','Other Regulatory and Technical Services - Land Use Planning and Permitting','Water Services - Groundwater and Surface Water Sampling','Property Assessment, Investigation and Remediation - Site Assessments','Risk&Process Safety Services \u2013 Process Hazard Analysis (PHA)','Risk&Process Safety Services \u2013 Process Safety Management','Risk&Process Safety Services \u2013 PSM General Services','Risk&Process Safety Services \u2013 Risk Assessments'],
-    'Multi-Discipline': ['Other Regulatory and Technical Services - Environmental Programs Development and Support']
+  /* ------------------------------------------------------------------
+     AWN Work Type -> Vantagepoint Project Type mapping.
+     Source: "Changes to Vantagepoint Project Types Field" (S. Smyth,
+     27 July 2026) including Sarah Robertson's ecology revisions.
+     Users pick the plain-English AWN Work Type; the tool translates it
+     into the Vantagepoint Pillar / Group / SubGroup for the admin team.
+     ------------------------------------------------------------------ */
+  const PILLAR_NAMES = { EC:'EC', LS:'Life Sciences', BE:'Built Environment', WE:'Water & Ecology' };
+
+  const WORK_TYPES = {
+    'Air & Climate': [
+      { work:'Air Monitoring',              pillar:'EC', group:'Air/Ambient Monitoring & Meteorological',                        sub:'Ambient Station Installation or Operation' },
+      { work:'Odour Assessment',            pillar:'EC', group:'Air/Ambient Monitoring & Meteorological',                        sub:'Odor Related Services' },
+      { work:'Road Scheme Air Assessment',  pillar:'EC', group:'Mobile Sources & Fuels/Air/Transportation Planning Support',     sub:'Transportation Planning' },
+      { work:'Air Modelling',               pillar:'EC', group:'Air/Modelling',                                                  sub:'General Dispersion Modeling' },
+      { work:'Indoor Air Quality',          pillar:'EC', group:'Other Regulatory and Technical Services/Other Regulatory and Technical Services', sub:'Indoor Air Quality Studies' },
+      { work:'Air EIAR chapter',            pillar:'EC', group:'Other Regulatory and Technical Services/Other Regulatory and Technical Services', sub:'Air Quality Planning' },
+      { work:'Climate',                     pillar:'EC', group:'Air/Emission Calculations, Inventory & Reporting',               sub:'GHG Emission Calculations and Reporting' },
+      { work:'Industrial Hygiene',          pillar:'LS', group:'Safety & Industrial Hygiene/Industrial Hygiene',                 sub:'Exposure Assessments and Monitoring' }
+    ],
+    'Noise': [
+      { work:'Environmental Noise',         pillar:'EC', group:'Air/Ambient Monitoring & Meteorological',                        sub:'Environmental Acoustics' },
+      { work:'Building Acoustics',          pillar:'BE', group:'Building Services/Building Services',                            sub:'Acoustics' },
+      { work:'Long Term Noise Monitoring',  pillar:'EC', group:'Air/Ambient Monitoring & Meteorological',                        sub:'Ambient Noise & Vibration' },
+      { work:'Noise at Work',               pillar:'LS', group:'Safety & Industrial Hygiene/Safety',                             sub:'Physical Agent Evaluations' }
+    ],
+    'Waste': [
+      { work:'Waste',                       pillar:'EC', group:'Waste/Waste',                                                    sub:'Waste Management Services- Other' }
+    ],
+    'Risk': [
+      { work:'Risk HAZID',                              pillar:'EC', group:'Risk & Process Safety Services/Risk & Process Safety Services', sub:'Process Hazard Analysis (PHA)' },
+      { work:'Risk COMAH, Firewater Risk, SEVESO',      pillar:'EC', group:'Risk & Process Safety Services/Risk & Process Safety Services', sub:'Risk Assessments' },
+      { work:'Risk Process Safety',                     pillar:'EC', group:'Risk & Process Safety Services/Risk & Process Safety Services', sub:'Process Safety Management' }
+    ],
+    'Ecology': [
+      { work:'AA/NIS',                                      pillar:'WE', group:'Wetlands, Wildlife, Terrestrial/Wetlands, Wildlife, Terrestrial', sub:'Ecological Services - Other' },
+      { work:'Impact Assessment',                           pillar:'WE', group:'Wetlands, Wildlife, Terrestrial/Wetlands, Wildlife, Terrestrial', sub:'Ecological Impact Assessment (EcIA)' },
+      { work:'Biodiversity Net Gain',                       pillar:'WE', group:'Wetlands, Wildlife, Terrestrial/Wetlands, Wildlife, Terrestrial', sub:'Biodiversity Net Gain (BNG)' },
+      { work:'Preliminary Ecological Appraisal (PEA)',      pillar:'WE', group:'Wetlands, Wildlife, Terrestrial/Wetlands, Wildlife, Terrestrial', sub:'Preliminary Ecological Appraisal (PEA)' },
+      { work:'Invasive Species & Specialist Surveys',       pillar:'WE', group:'Wetlands, Wildlife, Terrestrial/Wetlands, Wildlife, Terrestrial', sub:'Vegetation, Habitat mapping & Species inventory' },
+      { work:'Ecology - anything else',                     pillar:'WE', group:'Wetlands, Wildlife, Terrestrial/Wetlands, Wildlife, Terrestrial', sub:'Wetlands, Wildlife, Terrestrial/Wetlands, Wildlife, Terrestrial' }
+    ],
+    'Water': [
+      { work:'EIA Co-ordination / EIA Screening / Misc EIA Chapters (e.g. HH)', pillar:'EC', group:'Other Regulatory and Technical Services/Other Regulatory and Technical Services', sub:'Environmental Programs Development and Support' },
+      { work:'Ground or Surface Water Sampling',            pillar:'EC', group:'Water/Discharge Management',                                       sub:'Groundwater and Surface Water Sampling' },
+      { work:'Hydrology or Hydrogeology Projects incl FRA', pillar:'EC', group:'Water/Discharge Management',                                       sub:'Groundwater Resources' },
+      { work:'IE Licences',                                 pillar:'EC', group:'Environmental Planning & Permitting/Environmental Planning & Permitting', sub:'Misc Policy and Licensing Support' },
+      { work:'Env Due Diligence',                           pillar:'EC', group:'Due Diligence & Property Services/Due Diligence & Property Services',     sub:'Due Diligence and M&A Advisory' },
+      { work:'Water Resource Management',                   pillar:'WE', group:'Water Resource Planning/Water Resource Planning',                  sub:'Integrated Water Resource Planning' },
+      { work:'Environmental Clerk of Works',                pillar:'EC', group:'Other Regulatory and Technical Services/Other Regulatory and Technical Services', sub:'Other Regulatory and Technical Services/Other Regulatory and Technical Services' }
+    ]
   };
+
+  /* Which AWN Work Type categories appear for each team selected in step 1.
+     The AWN "Water" team covers water, waste, risk and ecology work. */
+  const TEAM_WORK_GROUPS = {
+    Air:   ['Air & Climate'],
+    Noise: ['Noise'],
+    Water: ['Water', 'Ecology', 'Waste', 'Risk'],
+    'Multi-Discipline': ['Air & Climate', 'Noise', 'Water', 'Ecology', 'Waste', 'Risk']
+  };
+
+  /* Flat lookup so a stored work type can be translated back to its
+     Vantagepoint Pillar / Group / SubGroup when building the email. */
+  const WORK_TYPE_LOOKUP = (function(){
+    const map = {};
+    Object.keys(WORK_TYPES).forEach(function(cat){
+      WORK_TYPES[cat].forEach(function(r){
+        map[r.work] = { category:cat, pillar:r.pillar, group:r.group, sub:r.sub };
+      });
+    });
+    return map;
+  })();
+
+  function vantagepointFor(workType){
+    const r = WORK_TYPE_LOOKUP[workType];
+    if(!r){ return null; }
+    return {
+      category: r.category,
+      pillar: r.pillar,
+      pillarLabel: (PILLAR_NAMES[r.pillar] === r.pillar) ? r.pillar : (r.pillar + ' (' + PILLAR_NAMES[r.pillar] + ')'),
+      group: r.group,
+      sub: r.sub,
+      combined: r.pillar + ' | ' + r.group + ' | ' + r.sub
+    };
+  }
+
   const FOLDERS = {
     'Air & Climate': [
       { type:'Wind Farm Air & Climate', file:'R267501.xxxx (Wind Farm Air & Climate).dotx' },
@@ -470,15 +2328,43 @@
     sfGrid.appendChild(makeThumb(SHORT_FORM.type,SHORT_FORM.file,PROPOSAL_REL+'\\'+SHORT_FORM.file));
     sfGroup.appendChild(sfGrid); templateArea.appendChild(sfGroup);
   }
+  const vpHint = document.getElementById('vpHint');
+
+  function updateVpHint(){
+    const vp = vantagepointFor(projectType.value);
+    if(!vp){
+      vpHint.innerHTML = 'The matching Vantagepoint Project Type is added to the email automatically.';
+      return;
+    }
+    vpHint.innerHTML = 'Vantagepoint Project Type'
+      + '<span class="vp-row"><b>Pillar:</b> ' + escapeHtml(vp.pillarLabel) + '</span>'
+      + '<span class="vp-row"><b>Group:</b> ' + escapeHtml(vp.group) + '</span>'
+      + '<span class="vp-row"><b>SubGroup:</b> ' + escapeHtml(vp.sub) + '</span>';
+  }
+
   function populateProjectTypes(team){
     projectType.innerHTML='';
-    const ph=document.createElement('option'); ph.value=''; ph.disabled=true; ph.selected=true; ph.textContent='Select a service type';
+    const ph=document.createElement('option'); ph.value=''; ph.disabled=true; ph.selected=true; ph.textContent='Select an AWN work type';
     projectType.appendChild(ph);
-    const list=PROJECT_TYPES[team]||[];
-    list.forEach(t=>{const o=document.createElement('option'); o.value=t; o.textContent=t; projectType.appendChild(o);});
+    const cats = TEAM_WORK_GROUPS[team] || [];
+    let flat = [];
+    const multi = cats.length > 1;
+    cats.forEach(function(cat){
+      const rows = WORK_TYPES[cat] || [];
+      const target = multi ? document.createElement('optgroup') : projectType;
+      if(multi){ target.label = cat; }
+      rows.forEach(function(r){
+        const o=document.createElement('option'); o.value=r.work; o.textContent=r.work;
+        target.appendChild(o); flat.push(r.work);
+      });
+      if(multi){ projectType.appendChild(target); }
+    });
     projectType.disabled=false;
-    if(list.length===1){projectType.value=list[0];}
+    if(flat.length===1){ projectType.value=flat[0]; }
+    updateVpHint();
   }
+
+  projectType.addEventListener('change', updateVpHint);
   document.getElementById('teamGroup').addEventListener('change',e=>{
     document.querySelectorAll('#teamGroup .team').forEach(c=>c.classList.remove('checked'));
     const card=e.target.closest('.team'); if(card)card.classList.add('checked');
@@ -494,15 +2380,32 @@
   function currencyValue(){const el=document.querySelector('input[name="currency"]:checked'); return el?el.value:'';}
   function currencySymbol(){return currencyValue()==='GBP'?'\u00A3':'\u20AC';}
   function currencyLocale(){return currencyValue()==='GBP'?'en-GB':'en-IE';}
+  const NP_LABELS = {
+    projectName:'Project name',
+    client:'Client / organisation',
+    naics:'Primary NAICS',
+    projectType:'AWN work type',
+    consultants:'Consultants involved',
+    fee:'Estimated fee',
+    pWin:'Probability of win'
+  };
   function checkComplete(){
-    let ok=true;
-    if(!teamValue())ok=false;
-    required.forEach(id=>{if(!document.getElementById(id).value.trim())ok=false;});
-    if(!climateValue())ok=false;
-    if(!currencyValue())ok=false;
-    if(selectedTemplates.length===0)ok=false;
+    const outstanding = [];
+
+    if(!teamValue()){ outstanding.push('Choose the team preparing this fee'); }
+    reqMarkGroup(document.getElementById('teamGroup'), !teamValue());
+
+    reqCheckFields(required, NP_LABELS).forEach(function(l){ outstanding.push(l); });
+
+    if(!currencyValue()){ outstanding.push('Project currency'); }
+    if(!climateValue()){ outstanding.push('Climate mitigation project'); }
+    if(selectedTemplates.length===0){ outstanding.push('Choose one proposal template'); }
+
+    reqRenderPanel('npReqPanel', outstanding);
+
+    const ok = outstanding.length === 0;
     submitBtn.disabled=!ok;
-    statusMsg.textContent= ok?'Ready to send.':'Complete all required fields and choose one template.';
+    statusMsg.textContent= ok ? 'Ready to send.' : 'Complete all required fields and choose one template.';
     statusMsg.classList.toggle('ok',ok);
   }
   form.addEventListener('input',checkComplete);
@@ -513,7 +2416,10 @@
       'Project name':document.getElementById('projectName').value.trim(),
       'Client / organisation':document.getElementById('client').value.trim(),
       'Primary NAICS':document.getElementById('naics').value.trim(),
-      'Primary project type':projectType.value,
+      'AWN work type':projectType.value,
+      'Vantagepoint Project Type - Pillar':(vantagepointFor(projectType.value)||{}).pillarLabel||'(not mapped)',
+      'Vantagepoint Project Type - Group':(vantagepointFor(projectType.value)||{}).group||'(not mapped)',
+      'Vantagepoint Project Type - SubGroup':(vantagepointFor(projectType.value)||{}).sub||'(not mapped)',
       'Consultants involved':document.getElementById('consultants').value.trim(),
       'Project currency':currencyValue(),
       'Estimated fee':currencySymbol()+Number(document.getElementById('fee').value).toLocaleString(currencyLocale()),
@@ -538,7 +2444,14 @@
   function buildHtmlBody(d){
     let rows='';
     for(const[k,v] of Object.entries(d)){
-      rows+='<tr><td style="padding:3px 14px 3px 0;font-weight:600;color:#0032A0;vertical-align:top;white-space:nowrap;">'+escapeHtml(k)+'</td><td style="padding:3px 0;color:#1a1a18;">'+escapeHtml(v)+'</td></tr>';
+      const isVp = k.indexOf('Vantagepoint Project Type') === 0;
+      const lblStyle = isVp
+        ? 'padding:3px 14px 3px 0;font-weight:600;color:#2D9B8E;vertical-align:top;white-space:nowrap;'
+        : 'padding:3px 14px 3px 0;font-weight:600;color:#0032A0;vertical-align:top;white-space:nowrap;';
+      const valStyle = isVp
+        ? 'padding:3px 0;color:#1a1a18;font-weight:600;'
+        : 'padding:3px 0;color:#1a1a18;';
+      rows+='<tr><td style="'+lblStyle+'">'+escapeHtml(k)+'</td><td style="'+valStyle+'">'+escapeHtml(v)+'</td></tr>';
     }
     const uc=['#2D9B8E','#0072CE']; let links='';
     selectedTemplates.forEach(t=>{
@@ -548,7 +2461,8 @@
     });
     return '<div style="font-family:\'Fira Sans\',Segoe UI,Arial,sans-serif;color:#1a1a18;font-size:14px;line-height:1.6;">'
       +'<h2 style="color:#0032A0;font-size:18px;margin:0 0 12px;">New proposal request</h2>'
-      +'<table style="border-collapse:collapse;margin-bottom:16px;">'+rows+'</table>'
+      +'<table style="border-collapse:collapse;margin-bottom:8px;">'+rows+'</table>'
+      +'<p style="font-size:12px;color:#555;margin:0 0 16px;">The Vantagepoint Project Type above has been derived automatically from the AWN work type selected by the requester, using the agreed AWN mapping.</p>'
       +'<h3 style="color:#2D9B8E;font-size:15px;margin:0 0 8px;">Selected template</h3>'
       +'<p style="font-size:12px;color:#555;margin:0 0 8px;">Both Karine and Sinead monitor this inbox. Click the link that matches your own login.</p>'
       +'<ul style="margin:0 0 16px;padding-left:20px;">'+links+'</ul>'
@@ -750,28 +2664,64 @@ form.addEventListener('submit', async (e) => {
   const chooser = document.getElementById('modeChooser');
   const viewNew = document.getElementById('viewNewProposal');
   const viewConv = document.getElementById('viewConvert');
-  function showView(el){
+  const viewPseaf = document.getElementById('viewPseaf');
+  const viewLog = document.getElementById('viewChangelog');
+  /* Remember where the change log was opened from, so Back returns there
+     rather than dumping the user at the menu mid-form. */
+  let lastView = null;
+  function hideAll(){
     chooser.style.display='none';
     viewNew.style.display='none';
     viewConv.style.display='none';
+    viewPseaf.style.display='none';
+    if(viewLog){ viewLog.style.display='none'; }
+  }
+  function showView(el){
+    hideAll();
     el.style.display='block';
     window.scrollTo({top:0,behavior:'smooth'});
   }
   function showMenu(){
-    viewNew.style.display='none';
-    viewConv.style.display='none';
+    hideAll();
     chooser.style.display='block';
     window.scrollTo({top:0,behavior:'smooth'});
   }
+  function currentView(){
+    if(viewNew.style.display === 'block'){ return viewNew; }
+    if(viewConv.style.display === 'block'){ return viewConv; }
+    if(viewPseaf.style.display === 'block'){ return viewPseaf; }
+    return null;
+  }
   document.getElementById('chooseNew').addEventListener('click',function(){ showView(viewNew); });
   document.getElementById('chooseConvert').addEventListener('click',function(){ showView(viewConv); });
+  document.getElementById('choosePseaf').addEventListener('click',function(){ showView(viewPseaf); });
   document.querySelectorAll('[data-back]').forEach(function(btn){
-    btn.addEventListener('click',function(e){ e.preventDefault(); showMenu(); });
+    btn.addEventListener('click',function(e){
+      e.preventDefault();
+      /* Returning from the change log goes back to the form you were on. */
+      if(viewLog && viewLog.style.display === 'block' && lastView){
+        const back = lastView; lastView = null;
+        showView(back);
+      } else {
+        lastView = null;
+        showMenu();
+      }
+    });
   });
+
+  /* The version number in the footer opens the change log. */
+  const verLink = document.getElementById('versionLink');
+  if(verLink && viewLog){
+    verLink.addEventListener('click', function(){
+      lastView = currentView();
+      showView(viewLog);
+    });
+  }
 })();
 
 /* ----- Generic, inbox-safe email delivery used by the Convert view ----- */
-function deliverEmail(subject, htmlBody, plainBody, statusEl){
+function deliverEmail(subject, htmlBody, plainBody, statusEl, note){
+  const suffix = note ? (' ' + note) : '';
   try{
     if(typeof Office!=='undefined' && Office.context && Office.context.mailbox){
       const item = Office.context.mailbox.item;
@@ -784,7 +2734,7 @@ function deliverEmail(subject, htmlBody, plainBody, statusEl){
           function writeBody(){
             item.body.setAsync(combined, { coercionType: Office.CoercionType.Html }, function(r){
               if(r.status===Office.AsyncResultStatus.Succeeded){
-                statusEl.textContent = 'Details added to the top of your draft. Review and send.';
+                statusEl.textContent = 'Details added to the top of your draft.' + suffix;
                 statusEl.classList.add('ok');
               } else {
                 console.error(r.error);
@@ -851,8 +2801,10 @@ function deliverEmail(subject, htmlBody, plainBody, statusEl){
     const sym = cvCurrency()==='GBP' ? '&pound;' : '&euro;';
     document.querySelectorAll('.cvSym').forEach(function(s){ s.innerHTML = sym; });
   }
-  function cvBid(){ const e=document.querySelector('input[name="cvBid"]:checked'); return e?e.value:''; }
-  function cvDesktop(){ const e=document.querySelector('input[name="cvDesktop"]:checked'); return e?e.value:''; }
+  function cvBid(){ const e=document.querySelector('input[name="cvBid"]:checked');
+    const v = e?e.value:''; reqMarkGroup(document.getElementById('cvBidToggle'), !v); return v; }
+  function cvDesktop(){ const e=document.querySelector('input[name="cvDesktop"]:checked');
+    const v = e?e.value:''; reqMarkGroup(document.getElementById('cvDesktopToggle'), !v); return v; }
 
   function cvCheck(){
     let ok = true;
@@ -888,7 +2840,7 @@ function deliverEmail(subject, htmlBody, plainBody, statusEl){
 
   function cvHtml(d){
     const top = [
-      ['Proposal number to be converted', d.propNo],
+      ['Project number', d.propNo],
       ['Company (Client Name)', d.company],
       ['Billing details', d.billing],
       ['Project Manager', d.projectManager],
@@ -915,7 +2867,7 @@ function deliverEmail(subject, htmlBody, plainBody, statusEl){
   }
   function cvPlain(d){
     let b = 'Convert proposal to project\r\n====================================\r\n\r\n';
-    b += 'Proposal number to be converted:\r\n'+d.propNo+'\r\n\r\n';
+    b += 'Project number:\r\n'+d.propNo+'\r\n\r\n';
     b += 'Company (Client Name):\r\n'+d.company+'\r\n\r\n';
     b += 'Billing details:\r\n'+d.billing+'\r\n\r\n';
     b += 'Project Manager:\r\n'+d.projectManager+'\r\n\r\n';
@@ -930,12 +2882,12 @@ function deliverEmail(subject, htmlBody, plainBody, statusEl){
     b += '------------------------------------\r\nSubmitted via the AWN Proposal Builder (Convert to Project).';
     return b;
   }
-  function cvShowSummary(d){
+  function cvShowSummary(d, pseaf, uploaded, tplName){
     const list = document.getElementById('cvSummaryList');
     list.innerHTML = '';
     const shown = [
       ['To', RECIPIENT],
-      ['Proposal number', d.propNo],
+      ['Project number', d.propNo],
       ['Company (Client Name)', d.company],
       ['Billing details', d.billing],
       ['Project Manager', d.projectManager],
@@ -951,6 +2903,20 @@ function deliverEmail(subject, htmlBody, plainBody, statusEl){
       ['Project folder location', d.folder],
       ['Notes', d.notes]
     ];
+    if(!pseaf){
+      shown.push(['PSEAF', 'Not required - desk based project']);
+    }
+    if(pseaf){
+      const names = pseaf.staff.map(function(s){ return s.name + (s.contact ? ' (' + s.contact + ')' : ''); });
+      const signedCount = pseaf.staff.filter(function(s){ return s.sig; }).length;
+      shown.push(['Site work carried out by you', pseaf.siteWorkBySelf ? 'Yes' : 'No - field engineer to complete kit and lone working']);
+      shown.push(['PSEAF assessment date', pseaf.date]);
+      shown.push(['PSEAF site location', pseaf.site || '(not given)']);
+      shown.push(['PSEAF staff on site', names.length ? names.join(', ') : '(none recorded)']);
+      shown.push(['Signatures embedded', signedCount + ' of ' + pseaf.staff.length]);
+      shown.push(['PSEAF PDF', uploaded ? ('Downloaded as ' + uploaded.fileName + ' - save to the project folder') : 'Not generated']);
+      shown.push(['PSEAF template', tplName ? (tplName + ' - save beside the PDF in the project folder') : 'Not generated']);
+    }
     shown.forEach(function(r){
       const dt=document.createElement('dt'); dt.textContent=r[0];
       const dd=document.createElement('dd'); dd.textContent=r[1];
@@ -960,16 +2926,442 @@ function deliverEmail(subject, htmlBody, plainBody, statusEl){
     box.style.display='block';
     box.scrollIntoView({behavior:'smooth',block:'start'});
   }
-  convForm.addEventListener('submit', function(e){
+  /* Build the PSEAF sections as steps 4 onwards. Company, Project Manager,
+     Desktop study and Project folder are taken from step 1 and step 3 above
+     and are deliberately not repeated here. */
+  const cvPseafHost = document.getElementById('cvPseafHost');
+  buildPseafSections(cvPseafHost, 'cv', 5, false, {
+    siteWorkGate:true, minimalContacts:true
+  });
+  cvPseafHost.style.display = 'none';
+  PSEAF_SIG_HOOKS['cv'] = function(){ cvCheck(); };
+
+  /* The PSEAF is required for every project that is not desk based.
+     Desktop study = Yes  -> no PSEAF.
+     Desktop study = No   -> PSEAF required.
+     Unanswered           -> undetermined, so the user must answer first. */
+  function cvWantsPseaf(){
+    const desk = cvDesktop();
+    if(!desk){ return null; }
+    return desk === 'No';
+  }
+
+  /* Show or hide the PSEAF automatically from the Desktop study answer */
+  let cvGateShown = null;
+  function cvSyncPseafGate(){
+    const want  = cvWantsPseaf();
+    const state = document.getElementById('cvGateState');
+
+    if(state){
+      if(want === null){
+        state.className = 'pseaf-gate-state pending';
+        state.innerHTML = '<span class="gs-icon">!</span>'
+          + '<span><b>Answer Desktop study? in step 1 to continue.</b>'
+          + ' A PSEAF is required for all projects involving site work.</span>';
+      } else if(want){
+        state.className = 'pseaf-gate-state required';
+        state.innerHTML = '<span class="gs-icon">&#10003;</span>'
+          + '<span><b>PSEAF required.</b> This project involves site work, so the Project Safety'
+          + ' &amp; Environmental Assessment Form below must be completed. A PDF is generated and'
+          + ' downloaded ready to attach to the email.</span>';
+      } else {
+        state.className = 'pseaf-gate-state skipped';
+        state.innerHTML = '<span class="gs-icon">&#10003;</span>'
+          + '<span><b>No PSEAF required.</b> This is a desk based project, so no site specific'
+          + ' safety assessment is needed. The conversion email will record that no PSEAF was generated.</span>';
+      }
+    }
+
+    cvPseafHost.style.display = want ? 'block' : 'none';
+
+    /* The PSEAF is revealed in place. The page is deliberately not
+       scrolled, so the user keeps their position in step 1. */
+    if(want && cvGateShown !== true){
+      if(typeof PSEAF_REVEAL_SYNC['cv'] === 'function'){ PSEAF_REVEAL_SYNC['cv'](); }
+      pseafStaffMessage('cv');
+    }
+    cvGateShown = want;
+  }
+  convForm.addEventListener('change', function(){ cvSyncPseafGate(); cvCheck(); });
+
+
+  /* PSEAF fields that must be present before the PDF can be produced */
+  /* Essential kit, lone working, next of kin and client contact are all
+     completed later by the field engineer, so they are not required here. */
+  const CV_PSEAF_REQUIRED = ['cvDesc','cvSite','cvDate','cvSiteRA'];
+  const CV_LABELS = {
+    cvPropNo:'Project number',
+    cvCompany:'Company (Client Name)',
+    cvBilling:'Billing details',
+    cvProjectManager:'Project Manager',
+    cvFolder:'Project folder location on server',
+    cvDesc:'PSEAF: project description',
+    cvSite:'PSEAF: site location',
+    cvDate:'PSEAF: assessment date',
+    cvSiteRA:'PSEAF: site specific risk assessment',
+    cvcOffice:'PSEAF: office contact',
+    cvcEmerg:'PSEAF: emergency contact / next of kin',
+    cvcClient:'PSEAF: client representative'
+  };
+  cvCheck = function(){
+    const outstanding = [];
+
+    reqCheckFields(CV_REQUIRED, CV_LABELS).forEach(function(l){ outstanding.push(l); });
+    if(!cvDesktop()){ outstanding.push('Desktop study?'); }
+    if(!cvBid()){ outstanding.push('Sole source or competitive bid'); }
+    const coreOk = outstanding.length === 0;
+
+    const want = cvWantsPseaf();
+
+    if(want === null){
+      outstanding.push('Desktop study? (this determines whether a PSEAF is required)');
+      reqRenderPanel('cvReqPanel', outstanding);
+      cvSubmit.disabled = true;
+      cvSubmit.textContent = 'Create Email Draft';
+      cvStatus.textContent = 'Answer Desktop study? in step 1 to determine whether a PSEAF is required.';
+      cvStatus.classList.remove('ok');
+      return;
+    }
+
+    if(!want){
+      reqRenderPanel('cvReqPanel', outstanding);
+      cvSubmit.textContent = 'Create Email Draft';
+      cvSubmit.disabled = !coreOk;
+      cvStatus.textContent = coreOk ? 'Ready to create the draft. Desk based project, so no PSEAF is required.' : 'Complete all required project details.';
+      cvStatus.classList.toggle('ok', coreOk);
+      return;
+    }
+
+    reqCheckFields(CV_PSEAF_REQUIRED, CV_LABELS).forEach(function(l){ outstanding.push(l); });
+
+    /* Site work gate must be answered; it controls the kit and lone sections. */
+    const swEl = document.querySelector('input[name="cvSiteWork"]:checked');
+    const siteWorkAnswered = !!swEl;
+    const siteWorkOn = !!(swEl && swEl.value === 'Yes');
+    if(!siteWorkAnswered){ outstanding.push('PSEAF: will you also be carrying out the site work?'); }
+
+    /* Doing the site work yourself means you complete the emergency and
+       client contacts here rather than leaving them for someone else. */
+    if(siteWorkOn){
+      reqCheckFields(['cvcEmerg','cvcClient'], CV_LABELS).forEach(function(l){ outstanding.push(l); });
+    } else {
+      reqMark(document.getElementById('cvcEmerg'), false);
+      reqMark(document.getElementById('cvcClient'), false);
+    }
+
+    const gates = pseafGateState('cv');
+    if(!gates.sub){ outstanding.push('PSEAF: is a subcontractor being used?'); }
+
+    const subs = pseafSubState('cv');
+    if(!subs.ok){
+      outstanding.push(subs.named === 0
+        ? 'PSEAF: record the subcontractor name and contact number'
+        : 'PSEAF: contact number missing for ' + (subs.named - subs.contacted) + ' of ' + subs.named + ' subcontractors');
+    }
+
+    /* Lone working only applies when this person is attending site. Its
+       radios stay in the DOM when hidden, so the checks are guarded. */
+    let loneQ = { ok:true, answered:0, total:0 };
+    let night = { ok:true };
+    if(siteWorkOn){
+      if(!gates.lone){ outstanding.push('PSEAF: is lone working required?'); }
+      loneQ = pseafLoneState('cv');
+      if(!loneQ.ok){
+        outstanding.push('PSEAF: lone working questions (' + loneQ.answered + ' of ' + loneQ.total + ' answered)');
+      }
+      night = pseafNightState('cv');
+      if(!night.ok){ outstanding.push('PSEAF: night-time lone working justification'); }
+    }
+
+    const staff = pseafStaffMessage('cv');
+    if(!staff.ok){
+      outstanding.push(staff.named === 0
+        ? 'PSEAF: record at least one member of staff with contact details and a signature'
+        : 'PSEAF: contact details or signature missing for ' + Math.max(staff.named - staff.signed, staff.named - staff.contacted) + ' of ' + staff.named + ' staff');
+    }
+
+    reqRenderPanel('cvReqPanel', outstanding);
+
+    const ok = outstanding.length === 0;
+    cvSubmit.textContent = 'Create PSEAF PDF & Email Draft';
+    cvSubmit.disabled = !ok;
+    if(ok){
+      cvStatus.textContent = 'Ready to generate the PSEAF and create the draft.';
+    } else if(!coreOk){
+      cvStatus.textContent = 'Complete all required project details above.';
+    } else if(!siteWorkAnswered){
+      cvStatus.textContent = 'Confirm whether you will also be carrying out the site work.';
+    } else if(!gates.sub || (siteWorkOn && !gates.lone)){
+      const miss = [];
+      if(!gates.sub){ miss.push('subcontractor'); }
+      if(siteWorkOn && !gates.lone){ miss.push('lone working'); }
+      cvStatus.textContent = 'Please answer the ' + miss.join(' and ') + ' question' + (miss.length > 1 ? 's' : '') + '.';
+    } else if(!subs.ok){
+      cvStatus.textContent = 'Record the name and contact number for each subcontractor.';
+    } else if(!loneQ.ok){
+      cvStatus.textContent = 'Answer all lone working questions (' + loneQ.answered + ' of ' + loneQ.total + ' done).';
+    } else if(!night.ok){
+      cvStatus.textContent = 'Night-time lone working needs a site specific risk assessment justification.';
+    } else if(!staff.ok){
+      cvStatus.textContent = 'Every member of staff needs a name, a contact number and a signature.';
+    } else {
+      cvStatus.textContent = 'Complete the required PSEAF site details.';
+    }
+    cvStatus.classList.toggle('ok', ok);
+  };
+  convForm.addEventListener('input', cvCheck);
+  convForm.addEventListener('change', cvCheck);
+
+  convForm.addEventListener('submit', async function(e){
     e.preventDefault();
     const d = cvData();
-    deliverEmail(cvSubject(d), cvHtml(d), cvPlain(d), cvStatus);
-    cvShowSummary(d);
+    const want = cvWantsPseaf();
+    cvSubmit.disabled = true;
+    cvStatus.classList.remove('ok');
+
+    /* No PSEAF: create the draft from the project details alone */
+    if(!want){
+      deliverEmail(cvSubject(d), cvHtml(d), cvPlain(d), cvStatus, 'Desk based project, so no PSEAF was generated.');
+      cvSubmit.disabled = false;
+      cvShowSummary(d, null, null, '');
+      return;
+    }
+
+    cvStatus.textContent = 'Building the PSEAF PDF...';
+
+    /* Reuse the Convert fields rather than duplicating them on the PSEAF */
+    const pseaf = readPseaf('cv', {
+      projNo:  d.propNo,
+      client:  d.company,
+      pm:      d.projectManager,
+      folder:  d.folder
+    });
+
+    /* Build BOTH files before downloading anything, so the status message
+       reflects what was actually produced. */
+    const files = [];
+
+    let pdf = null;
+    try {
+      pdf = await pseafBuildPdf(pseaf);
+      files.push({ name: pdf.fileName, blob: pdf.blob });
+    } catch(err){
+      console.error(err);
+      cvStatus.textContent = 'Could not build the PSEAF PDF. The email draft will still be created.';
+    }
+
+    /* Editable template saved beside the PDF. It carries the full form,
+       including the kit and lone working sections the field engineer
+       completes nearer the site visit. */
+    let tplName = '';
+    let tplFailed = false;
+    try {
+      const tpl = pseafTemplateFile(pseaf);
+      tplName = tpl.name;
+      files.push(tpl);
+    } catch(err){
+      console.error(err);
+      tplFailed = true;
+    }
+
+    cvStatus.textContent = 'Downloading ' + files.length + ' file' + (files.length === 1 ? '' : 's') + '...';
+    await pseafDownloadQueue(files);
+    pseafRenderDownloads('cvDownloads', files);
+
+    /* The email carries the project details from steps 1 to 3 only.
+       Everything about the safety assessment stays in the PSEAF PDF and
+       the editable HTML template, which are saved to the project folder
+       rather than summarised to the admin inbox. */
+    const fileName  = pdf ? pdf.fileName : '';
+    const bodyHtml  = cvHtml(d);
+    const bodyPlain = cvPlain(d);
+
+    /* The note is passed through so it survives the async body callback
+       rather than being overwritten by it. */
+    let note;
+    if(!pdf){
+      note = 'The PSEAF PDF could not be generated. Please produce it separately for the project folder.';
+    } else if(tplFailed){
+      note = 'PSEAF PDF downloaded, but the editable template could not be built. Save the PDF to the project folder.';
+    } else {
+      note = 'PSEAF PDF and editable template downloaded for the project folder. The email contains the project details only.';
+    }
+
+    deliverEmail(cvSubject(d), bodyHtml, bodyPlain, cvStatus, note);
+
+    cvSubmit.disabled = false;
+    cvShowSummary(d, pseaf, pdf, tplName);
   });
 
   updateSymbols();
   updateTotal();
+  cvSyncPseafGate();
   cvCheck();
+})();
+
+/* =====================================================================
+   STANDALONE PSEAF: complete the form on its own and generate the PDF.
+   No email is produced in this mode; the PDF is downloaded ready to be
+   saved to the project folder.
+   ===================================================================== */
+(function(){
+  const psForm   = document.getElementById('pseafForm');
+  const psSubmit = document.getElementById('psSubmitBtn');
+  const psStatus = document.getElementById('psStatus');
+
+  buildPseafSections(document.getElementById('psPseafHost'), 'ps', 1, true);
+
+  const PS_REQUIRED = ['psProjNo','psClient','psPm','psFolder','psDesc','psSite','psDate','psSiteRA','pscOffice','pscEmerg','pscClient'];
+
+  const PS_LABELS = {
+    psProjNo:'Project number',
+    psClient:'Client',
+    psPm:'Project Manager',
+    psFolder:'Project folder location on server',
+    psDesc:'Project description',
+    psSite:'Site location',
+    psDate:'Assessment date',
+    psSiteRA:'Site specific risk assessment',
+    pscOffice:'Office contact',
+    pscEmerg:'Emergency contact / next of kin',
+    pscClient:'Client representative'
+  };
+  function psCheck(){
+    const outstanding = [];
+
+    reqCheckFields(PS_REQUIRED, PS_LABELS).forEach(function(l){ outstanding.push(l); });
+    const fieldsOk = outstanding.length === 0;
+
+    const gates = pseafGateState('ps');
+    if(!gates.sub){  outstanding.push('Is a subcontractor being used?'); }
+    if(!gates.lone){ outstanding.push('Is lone working required?'); }
+
+    const subs = pseafSubState('ps');
+    if(!subs.ok){
+      outstanding.push(subs.named === 0
+        ? 'Record the subcontractor name and contact number'
+        : 'Contact number missing for ' + (subs.named - subs.contacted) + ' of ' + subs.named + ' subcontractors');
+    }
+
+    const loneQ = pseafLoneState('ps');
+    if(!loneQ.ok){
+      outstanding.push('Lone working questions (' + loneQ.answered + ' of ' + loneQ.total + ' answered)');
+    }
+
+    const night = pseafNightState('ps');
+    if(!night.ok){ outstanding.push('Night-time lone working justification'); }
+
+    const staff = pseafStaffMessage('ps');
+    if(!staff.ok){
+      outstanding.push(staff.named === 0
+        ? 'Record at least one member of staff with contact details and a signature'
+        : 'Contact details or signature missing for ' + Math.max(staff.named - staff.signed, staff.named - staff.contacted) + ' of ' + staff.named + ' staff');
+    }
+
+    reqRenderPanel('psReqPanel', outstanding);
+
+    const ok = outstanding.length === 0;
+    psSubmit.disabled = !ok;
+    if(ok){
+      psStatus.textContent = 'Ready to generate the PSEAF PDF.';
+    } else if(!fieldsOk){
+      psStatus.textContent = 'Complete the required project and site details.';
+    } else if(!gates.ok){
+      psStatus.textContent = 'Please answer the ' + gates.missing.join(' and ') + ' question' + (gates.missing.length > 1 ? 's' : '') + '.';
+    } else if(!subs.ok){
+      psStatus.textContent = 'Record the name and contact number for each subcontractor.';
+    } else if(!loneQ.ok){
+      psStatus.textContent = 'Answer all lone working questions (' + loneQ.answered + ' of ' + loneQ.total + ' done).';
+    } else if(!night.ok){
+      psStatus.textContent = 'Night-time lone working needs a site specific risk assessment justification.';
+    } else {
+      psStatus.textContent = 'Every member of staff needs a name, a contact number and a signature.';
+    }
+    psStatus.classList.toggle('ok', ok);
+  }
+  PSEAF_SIG_HOOKS['ps'] = function(){ psCheck(); };
+  psForm.addEventListener('input', psCheck);
+  psForm.addEventListener('change', psCheck);
+
+  function psShowSummary(d, uploaded, tplName){
+    const list = document.getElementById('psSummaryList');
+    list.innerHTML = '';
+    const kitOn  = d.kit.filter(function(k){ return k.on; }).map(function(k){ return k.item; });
+    const rows = [
+      ['Project number', d.projNo],
+      ['Client', d.client],
+      ['Project Manager', d.pm],
+      ['Project description', d.desc],
+      ['Site location', d.site],
+      ['Assessment date', d.date],
+      ['Activities', (d.activities && d.activities.length) ? d.activities.join(', ') : '(none selected)'],
+      ['Site specific risk assessment', d.siteRA || '(not given)'],
+      ['Essential kit', kitOn.length ? kitOn.join('; ') : '(none)'],
+      ['Staff on site', d.staff.length ? d.staff.map(function(s){ return s.name + (s.contact ? ' (' + s.contact + ')' : ''); }).join(', ') : '(none recorded)'],
+      ['Signatures embedded', d.staff.filter(function(s){ return s.sig; }).length + ' of ' + d.staff.length],
+      ['Subcontractor used', d.subUsed ? 'Yes' : 'No'],
+      ['Lone working', d.loneUsed ? (d.nightWorking ? 'Yes, including night-time' : 'Yes') : 'No'],
+      ['Subcontractors on site', d.subUsed ? ((d.subSigned && d.subSigned.length) ? d.subSigned.map(function(s){ return s.name + (s.contact ? ' (' + s.contact + ')' : ''); }).join(', ') : '(none recorded)') : 'Not used'],
+      ['Project folder', d.folder],
+      ['PSEAF PDF', uploaded ? ('Downloaded as ' + uploaded.fileName) : 'Not generated'],
+      ['PSEAF template', tplName ? tplName : 'Not generated']
+    ];
+    rows.forEach(function(r){
+      const dt=document.createElement('dt'); dt.textContent=r[0];
+      const dd=document.createElement('dd'); dd.textContent=r[1];
+      list.appendChild(dt); list.appendChild(dd);
+    });
+    const box = document.getElementById('psSummaryBox');
+    box.style.display = 'block';
+    box.scrollIntoView({behavior:'smooth',block:'start'});
+  }
+
+  psForm.addEventListener('submit', async function(e){
+    e.preventDefault();
+    psSubmit.disabled = true;
+    psStatus.classList.remove('ok');
+    psStatus.textContent = 'Building the PSEAF PDF...';
+
+    const d = readPseaf('ps');
+    let pdf = null;
+
+    try {
+      pdf = await pseafBuildPdf(d);
+    } catch(err){
+      console.error(err);
+      psStatus.textContent = 'Could not build the PSEAF PDF. Please try again.';
+      psSubmit.disabled = false;
+      return;
+    }
+
+    const files = [{ name: pdf.fileName, blob: pdf.blob }];
+
+    /* Editable template saved beside the PDF for future amendments */
+    let tplName = '';
+    let tplFailed = false;
+    try {
+      const tpl = pseafTemplateFile(d);
+      tplName = tpl.name;
+      files.push(tpl);
+    } catch(err){
+      console.error(err);
+      tplFailed = true;
+    }
+
+    psStatus.textContent = 'Downloading ' + files.length + ' file' + (files.length === 1 ? '' : 's') + '...';
+    await pseafDownloadQueue(files);
+    pseafRenderDownloads('psDownloads', files);
+
+    psStatus.textContent = tplFailed
+      ? 'PSEAF downloaded as ' + pdf.fileName + '. The editable template could not be built.'
+      : 'PSEAF PDF and editable template downloaded. If either did not appear, use the Download buttons below.';
+    psStatus.classList.add('ok');
+
+    psSubmit.disabled = false;
+    psShowSummary(d, pdf, tplName);
+  });
+
+  psCheck();
 })();
 
   if(typeof Office!=='undefined'){ Office.onReady(function(){ checkComplete(); }); } else { checkComplete(); }
